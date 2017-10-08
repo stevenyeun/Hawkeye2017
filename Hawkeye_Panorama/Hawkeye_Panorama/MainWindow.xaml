@@ -1,0 +1,70 @@
+﻿<Window x:Class="Hawkeye_Panorama.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hawkeye_Panorama"
+        mc:Ignorable="d"
+           Closing="Window_Closing"
+        Title="파노라마" Height="600" Width="1920" Background="Black" ResizeMode="NoResize">
+
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <!-- 축소상태일때보여줄버튼 -->
+        <Button x:Name="MaximizeButton" Visibility="Hidden" Content="파노라마" Grid.Column="0" Grid.Row="0" VerticalContentAlignment="Center"  HorizontalContentAlignment="Center" Click="MaximizeButton_Click" Style="{StaticResource InformButton}"/>
+
+
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="67"/>
+                <RowDefinition Height="20"/>
+
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="67"/>
+                <RowDefinition Height="20"/>
+
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="67"/>
+                <RowDefinition Height="20"/>
+
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="67"/>                
+                <RowDefinition Height="20"/>
+
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="67"/>
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+
+            </Grid.ColumnDefinitions>         
+            <Label x:Name="panoramaLabel1" Grid.Row="0" Content="채널1" HorizontalAlignment="Left"/>
+            <local:PanoramaCanvas x:Name="panoramaCanvas1" Grid.Row="1" />
+            <local:PanBeltCanvas x:Name="panBeltCanvas1" Grid.Row="2" />
+
+            <Label x:Name="panoramaLabel2" Grid.Row="3" Content="채널2" HorizontalAlignment="Left"/>
+            <local:PanoramaCanvas x:Name="panoramaCanvas2" Grid.Row="4" />
+            <local:PanBeltCanvas x:Name="panBeltCanvas2" Grid.Row="5" />
+
+            <Label x:Name="panoramaLabel3" Grid.Row="6" Content="채널3" HorizontalAlignment="Left"/>
+            <local:PanoramaCanvas x:Name="panoramaCanvas3" Grid.Row="7"/>
+            <local:PanBeltCanvas x:Name="panBeltCanvas3" Grid.Row="8" />
+
+            <Label x:Name="panoramaLabel4" Grid.Row="9" Content="채널4" HorizontalAlignment="Left"/>
+            <local:PanoramaCanvas x:Name="panoramaCanvas4" Grid.Row="10"/>
+            <local:PanBeltCanvas x:Name="panBeltCanvas4" Grid.Row="11" />
+
+            <Label x:Name="panoramaLabel5" Grid.Row="12" Content="채널5" HorizontalAlignment="Left"/>
+            <local:PanoramaCanvas x:Name="panoramaCanvas5" Grid.Row="13"/>
+            <local:PanBeltCanvas x:Name="panBeltCanvas5" Grid.Row="14" />
+        </Grid>
+    </Grid>
+</Window>

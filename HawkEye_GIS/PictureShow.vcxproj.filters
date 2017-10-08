@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{de4b9316-4c08-4eba-b675-8c3266158d41}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{08954575-ea60-4736-bc87-60b55583c188}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{84c27ff2-2edd-44c6-8f2d-fc0a1624d8d0}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+    <Filter Include="SourceLIB">
+      <UniqueIdentifier>{1596872c-8fa3-40ba-80bd-3103240e81cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceLIB\CoordApp">
+      <UniqueIdentifier>{fd09feae-3f81-4c2e-94ce-6f0d4ddb3cb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceLIB\GISUtil">
+      <UniqueIdentifier>{b5d63420-2f7e-44fb-895a-1ccc37655ac6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceLIB\CoordConversion">
+      <UniqueIdentifier>{ab49137c-6101-4ec2-84fb-8afeb6d94be3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceLIB\ShareUtil">
+      <UniqueIdentifier>{ad6e27aa-fa65-4722-bd17-885f5f8d2bd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Define">
+      <UniqueIdentifier>{97355de1-8608-4334-9995-30242bd7861e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CommonSource">
+      <UniqueIdentifier>{532e7747-6735-45cb-bc96-6c93af662b9f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AssociationsDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgDrawingStyleConfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgStatusCoord.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FileDrawingInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFrm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyFunc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OptCommonInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OptMapInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Picture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PictureShow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PictureShowDoc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PictureShowView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StdAfx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceLIB\CoordApp\CoordApp.cpp">
+      <Filter>SourceLIB\CoordApp</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceLIB\CoordApp\GeoCoordConv.cpp">
+      <Filter>SourceLIB\CoordApp</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceLIB\GISUtil\Scaler.cpp">
+      <Filter>SourceLIB\GISUtil</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceLIB\CoordConversion\mgrs.cpp">
+      <Filter>SourceLIB\CoordConversion</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceLIB\CoordConversion\polarst.cpp">
+      <Filter>SourceLIB\CoordConversion</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceLIB\CoordConversion\tranmerc.cpp">
+      <Filter>SourceLIB\CoordConversion</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceLIB\CoordConversion\ups.cpp">
+      <Filter>SourceLIB\CoordConversion</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceLIB\CoordConversion\utm.cpp">
+      <Filter>SourceLIB\CoordConversion</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceLIB\ShareUtil\QTRegistry.cpp">
+      <Filter>SourceLIB\ShareUtil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CommonSource\CommonMFCFunc.cpp">
+      <Filter>CommonSource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CommonSource\ErrorDefine.cpp">
+      <Filter>CommonSource</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientSocketAuthority.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CommonSource\IniPTZEnvSetup.cpp">
+      <Filter>CommonSource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CommonSource\AuthorityPacket.cpp">
+      <Filter>CommonSource</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="PictureShow.rc">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AssociationsDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgDrawingStyleConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgStatusCoord.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FileDrawingInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MainFrm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyFunc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OptCommonInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OptMapInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Picture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PictureShow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PictureShowDoc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PictureShowView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StdAfx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceLIB\CoordApp\CoordApp.h">
+      <Filter>SourceLIB\CoordApp</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceLIB\CoordApp\GeoCoordConv.h">
+      <Filter>SourceLIB\CoordApp</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceLIB\GISUtil\Scaler.h">
+      <Filter>SourceLIB\GISUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceLIB\CoordConversion\mgrs.h">
+      <Filter>SourceLIB\CoordConversion</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceLIB\CoordConversion\polarst.h">
+      <Filter>SourceLIB\CoordConversion</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceLIB\CoordConversion\tranmerc.h">
+      <Filter>SourceLIB\CoordConversion</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceLIB\CoordConversion\ups.h">
+      <Filter>SourceLIB\CoordConversion</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceLIB\CoordConversion\utm.h">
+      <Filter>SourceLIB\CoordConversion</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceLIB\ShareUtil\QTRegistry.h">
+      <Filter>SourceLIB\ShareUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="IPCdefine.h">
+      <Filter>Define</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CommonSource\CommonDefine.h">
+      <Filter>CommonSource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CommonSource\CommonMFCFunc.h">
+      <Filter>CommonSource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CommonSource\ErrorDefine.h">
+      <Filter>CommonSource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CommonSource\PresetPacket.h">
+      <Filter>CommonSource</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientSocketAuthority.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CommonSource\IniPTZEnvSetup.h">
+      <Filter>CommonSource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CommonSource\AuthorityPacket.h">
+      <Filter>CommonSource</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\aero_pen.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\PictureShow.rc2">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\Default.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Extention_BMP.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Extention_DIB.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Extention_EMF.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Extention_GIF.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Extention_ICO.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Extention_JPG.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Extention_WMF.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\FullScreen.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\JPG.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\mainfram.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\PictureShow.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\PictureShowDoc.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Toolbar.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\toolbar1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\toolbar2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+</Project>

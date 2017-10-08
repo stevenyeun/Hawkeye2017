@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>HawkEye_GIS</ProjectName>
+    <ProjectGuid>{B6A0A4F4-2339-4714-98DF-36413609BB6D}</ProjectGuid>
+    <RootNamespace>PictureShow</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>14.0.25431.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>../HawkEye/Hawkeye_GIS/</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>../CommonSource;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>../HawkEye/Hawkeye_GIS/</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>../CommonSource;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Debug/PictureShow.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Create</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>.\Debug/PictureShow.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
+      <ObjectFileName>.\Debug/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x040d</Culture>
+    </ResourceCompile>
+    <Link>
+      <OutputFile>../HawkEye/Hawkeye_GIS/Hawkeye_GIS.exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\Debug/PictureShow.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Debug/PictureShow.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Release/PictureShow.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>Create</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>.\Release/PictureShow.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Release/</AssemblerListingLocation>
+      <ObjectFileName>.\Release/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x040d</Culture>
+    </ResourceCompile>
+    <Link>
+      <OutputFile>../HawkEye/Hawkeye_GIS/Hawkeye_GIS.exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <ProgramDatabaseFile>.\Release/PictureShow.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateMapFile>false</GenerateMapFile>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Release/PictureShow.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\CommonSource\AuthorityPacket.cpp" />
+    <ClCompile Include="..\CommonSource\CommonMFCFunc.cpp" />
+    <ClCompile Include="..\CommonSource\ErrorDefine.cpp" />
+    <ClCompile Include="..\CommonSource\IniPTZEnvSetup.cpp" />
+    <ClCompile Include="AssociationsDlg.cpp" />
+    <ClCompile Include="ClientSocketAuthority.cpp" />
+    <ClCompile Include="DlgDrawingStyleConfig.cpp" />
+    <ClCompile Include="DlgStatusCoord.cpp" />
+    <ClCompile Include="FileDrawingInfo.cpp" />
+    <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="MyFunc.cpp" />
+    <ClCompile Include="OptCommonInfo.cpp" />
+    <ClCompile Include="OptMapInfo.cpp" />
+    <ClCompile Include="Picture.cpp" />
+    <ClCompile Include="PictureShow.cpp" />
+    <ClCompile Include="PictureShowDoc.cpp" />
+    <ClCompile Include="PictureShowView.cpp" />
+    <ClCompile Include="SourceLIB\CoordApp\CoordApp.cpp" />
+    <ClCompile Include="SourceLIB\CoordApp\GeoCoordConv.cpp" />
+    <ClCompile Include="SourceLIB\CoordConversion\mgrs.cpp" />
+    <ClCompile Include="SourceLIB\CoordConversion\polarst.cpp" />
+    <ClCompile Include="SourceLIB\CoordConversion\tranmerc.cpp" />
+    <ClCompile Include="SourceLIB\CoordConversion\ups.cpp" />
+    <ClCompile Include="SourceLIB\CoordConversion\utm.cpp" />
+    <ClCompile Include="SourceLIB\GISUtil\Scaler.cpp" />
+    <ClCompile Include="SourceLIB\ShareUtil\QTRegistry.cpp" />
+    <ClCompile Include="StdAfx.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="PictureShow.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\CommonSource\AuthorityPacket.h" />
+    <ClInclude Include="..\CommonSource\CommonDefine.h" />
+    <ClInclude Include="..\CommonSource\CommonMFCFunc.h" />
+    <ClInclude Include="..\CommonSource\ErrorDefine.h" />
+    <ClInclude Include="..\CommonSource\IniPTZEnvSetup.h" />
+    <ClInclude Include="..\CommonSource\PresetPacket.h" />
+    <ClInclude Include="AssociationsDlg.h" />
+    <ClInclude Include="ClientSocketAuthority.h" />
+    <ClInclude Include="DlgDrawingStyleConfig.h" />
+    <ClInclude Include="DlgStatusCoord.h" />
+    <ClInclude Include="FileDrawingInfo.h" />
+    <ClInclude Include="IPCdefine.h" />
+    <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="MyFunc.h" />
+    <ClInclude Include="OptCommonInfo.h" />
+    <ClInclude Include="OptMapInfo.h" />
+    <ClInclude Include="Picture.h" />
+    <ClInclude Include="PictureShow.h" />
+    <ClInclude Include="PictureShowDoc.h" />
+    <ClInclude Include="PictureShowView.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="SourceLIB\CoordApp\CoordApp.h" />
+    <ClInclude Include="SourceLIB\CoordApp\GeoCoordConv.h" />
+    <ClInclude Include="SourceLIB\CoordConversion\mgrs.h" />
+    <ClInclude Include="SourceLIB\CoordConversion\polarst.h" />
+    <ClInclude Include="SourceLIB\CoordConversion\tranmerc.h" />
+    <ClInclude Include="SourceLIB\CoordConversion\ups.h" />
+    <ClInclude Include="SourceLIB\CoordConversion\utm.h" />
+    <ClInclude Include="SourceLIB\GISUtil\Scaler.h" />
+    <ClInclude Include="SourceLIB\ShareUtil\QTRegistry.h" />
+    <ClInclude Include="StdAfx.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\aero_pen.cur" />
+    <None Include="res\PictureShow.rc2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\Default.jpg" />
+    <Image Include="res\Extention_BMP.ico" />
+    <Image Include="res\Extention_DIB.ico" />
+    <Image Include="res\Extention_EMF.ico" />
+    <Image Include="res\Extention_GIF.ico" />
+    <Image Include="res\Extention_ICO.ico" />
+    <Image Include="res\Extention_JPG.ico" />
+    <Image Include="res\Extention_WMF.ico" />
+    <Image Include="res\FullScreen.bmp" />
+    <Image Include="res\JPG.ico" />
+    <Image Include="res\mainfram.bmp" />
+    <Image Include="res\PictureShow.ico" />
+    <Image Include="res\PictureShowDoc.ico" />
+    <Image Include="res\Toolbar.bmp" />
+    <Image Include="res\toolbar1.bmp" />
+    <Image Include="res\toolbar2.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="PictureShow.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

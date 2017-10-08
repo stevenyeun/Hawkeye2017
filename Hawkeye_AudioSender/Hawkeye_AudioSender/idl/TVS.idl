@@ -1,0 +1,1603 @@
+// TVS.idl : IDL source for TVS.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (TVS.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+#include "olectl.h"
+
+#include "Guids.h"
+
+cpp_quote("#define SERVER_TIME_DISPLAY \"%SERVERTIME%\"")
+cpp_quote("#define FRAMERATE_DISPLAY \"%FRAMERATE%\"")
+
+interface ITVSDisplay;
+interface ITVSIVSControl;
+
+#pragma pack(1)
+
+typedef enum 
+{ 
+//TN_LCI_TYPE & defaults 
+  TN_LCI_MAX_MONITOR  =0,// read from system 
+  TN_LCI_MAX_DISPLAY_CHANNEL, //1 
+  TN_LCI_MAX_RECORD_CHANNEL, //0 
+  TN_LCI_MAX_RESOLUTION, //TN_RT_HDF
+  TN_LCI_MIC_VOL, // read from system 
+  TN_LCI_SPEAKER_VOL, // read from system 
+  TN_LCI_SNAPSHOT_FOLDER, // C:
+  TN_LCI_BUFFER_FRAMES,
+  TN_LCI_SYNC_CONNECT,
+  TN_LCI_AUTO_PLAY,
+  TN_LCI_PTZ_BASE,	//0. coordinate system (0 = absolute, 1 = relative)
+  TN_LCI_MAX_HD_CHANNEL,	// max number of HD channels => Obsolete now
+  TN_LCI_DISPLAY_VIDEOLOSS_ON,	// show "Video loss" msg.
+  TN_LCI_DISPLAY_VIDEOLOSS_TEXT,// set text for video loss.
+  TN_LCI_DISPLAY_TEXT_FOREGROUND,	// set text color for text msg
+  TN_LCI_DISPLAY_TEXT_BACKGROUND,	// set background color for text msg
+  TN_LCI_DISPLAY_GRID_ON,	// display grid.
+  TN_LCI_DISPLAY_GRID_COLOR,	// set grid color
+  TN_LCI_DISPLAY_TRY_CONNECT_ON,	// show "Try to connect" msg
+  TN_LCI_DISPLAY_TRY_CONNECT_TEXT,	// set text for "Try to connect" msg
+  TN_LCI_DISPLAY_DISCONNECT_ON,	// show "Disconnected" msg
+  TN_LCI_DISPLAY_DISCONNECT_TEXT,	// set text for "disconnected" msg
+  TN_LCI_DISPLAY_GRID_WIDTH,	// set grid width
+  TN_LCI_DISPLAY_STATISTICS,		// switch on/off osd statistics
+  TN_LCI_OSD_MODE,	// set mode for OSD drawing.
+  TN_LCI_CONNECTION_TIMEOUT,
+  TN_LCI_ONSCREEN_DIGITALZOOM,
+  TN_LCI_D3D_RESOURCES,
+  TN_LCI_NATIVE_NOTIFICATIONS,
+  TN_LCI_IVS_PRESENTED,		//VT_I4. (read only). 0: IVS is absent(not installed), 1: IVS is present in the system
+  TN_LCI_IVS_USE,			//VT_I4.  0: do not use IVS; 1: going to use IVS
+  TN_LCI_ENUM_SERVERS,		//VT_ARRAY | VT_VARIANT. (read only). return lChnlIds of servers have being added before
+  TN_LCI_TCFID,			//VT_I8. (read only). Get tcf_id by lChId
+  TN_LCI_PLAYBACKTIME,		//VT_I4. 0: off; 1:top; 2:bottom
+  TN_LCI_KEYFRAMES_ONLY_FF,	//VT_BOOL
+  TN_LCI_1X1_VIDEO_CHNL,	//VT_I4.
+  TN_LCI_1X1_AUDIO_CHNL,	//VT_I4.
+  TN_LCI_PLAYBACKTIME_FONTSIZE,		//VT_I4.
+  TN_LCI_DISPLAY_OUTOFMEMORY_TEXT,	// set text for "Out of memory" msg
+  TN_LCI_AVSYNC_ENABLE,		//VT_BOOL. 0: off; 1: on.  default is off
+  TN_LCI_AVSYNC_RESYNC,		//VT_I4. resync condition. 300ms by defaut
+  TN_LCI_ABUFFER,			//VT_I4. audio buffer. 500 ms by default
+  TN_LCI_SNAPSHOT_ASPECTRATIO, // 0 to keep aspect ratio of original(camera) video input; 1 to display/save with encoding resolution; Default: 0
+  TN_LCI_APPLICATION_ID		//VT_BSTR. application identifier (usually application name)
+ ,TN_LCI_AVIBACKUP_FILENAME_CHANGE_MESSAGE //VT_BSTR - Localized text for MessageBox when AVI backup changes filename during backup
+ ,TN_LCI_AVIBACKUP_FILENAME_CHANGE_CAPTION //VT_BSTR - Localized text for MessageBox when AVI backup changes filename during backup
+ ,TN_LCI_VIDEO_MEMORY_LIMIT //Any vt will be converted to double [ 0, 100 ] - percents;  -1 - default value (no recalculate)
+//asvzzz 22mar2012 bug1616
+ ,TN_LCI_DISPLAY_RESTRICTED_ON//Set to show "Restricted resolution" msg
+ ,TN_LCI_DISPLAY_RESTRICTED_TEXT//"Restricted resolution" localized text
+ ,TN_LCI_DISPLAY_RESTRICTED_TEXT_BOX//localized text for MessageBox about restricted resolution
+ ,TN_LCI_DISPLAY_LIMIT_FRAMERATE // limits display framerate for some value
+ ,TN_LCI_AUDIO_DISPLAY_POS		//VT_I4. 0: off; 1:right; 2:left
+ ,TN_LCI_DISPLAY_AUDIOLOSS_ON
+ ,TN_LCI_DISPLAY_AUDIOLOSS_TEXT
+ ,TN_LCI_WMVBACKUP_NODECODER_MESSAGE
+ ,TN_LCI_WMVBACKUP_NODECODER_CAPTION
+ ,TN_LCI_AUDIOLEVEL_SUPPORTED
+ ,TN_LCI_DECODINGTIME_SUPPORTED
+ ,TN_LCI_IFRAMEPLAYBACK_SUPPORTED
+ ,TN_LCI_GUID
+//
+} TN_LCI_TYPE;
+  
+  
+  //error reasons
+typedef enum
+{
+  //common
+  TN_SNC_NO_ERROR =0,
+  TN_SNC_MEMORYLACK,        // No memory available in the PC
+  TN_SNC_CPUOVERLOAD,       // CPU is overloaded
+  //connection errors
+   // starting from different base: 10
+  TN_SNC_CN_SERVER_UNREACHABLE = 10,  // Server is unreachable for connection
+  TN_SNC_CN_TOO_MANY_CONNECTION,    // Too many connections on the server
+  TN_SNC_CN_PASSWORD_MISMATCH ,   // Password is incorrect
+  TN_SNC_CN_CONNECTION_DISABLED,    // Server disabled the connection
+  TN_SNC_CN_ID_NOT_EXIST,       // Login ID doesn’t exist
+  TN_SNC_CN_DOMAINNAME_UNKNOWN,   // Can’t resolve the domain name
+  TN_SNC_CN_PARAMETER_OUTOFRANGE,   // Invalid channels is one of this case
+  TN_SNC_CN_DUPLICATE_CONNECT,    // Multiple connections to a channel are not allowed
+  TN_SNC_CN_KEEPALIVE_FAILED,     // Disconnected due to keep alive timeout
+  TN_SNC_CN_NO_AUTHORITY_OPERATION, // eg: Setup operation by user?
+  TN_SNC_CN_OPERATION_FAILED,      // General failure
+  TN_SNC_FAILED_INITIALIZE_DISPLAY,
+  TN_SNC_CN_INVALID_TCFID
+
+} TN_SNC_TYPE;
+
+
+typedef enum
+{
+  TN_RT_D1 = 0, //D1, default
+  TN_RT_CIF,    //CIF
+  TN_RT_HDF,    //High Definition
+  TN_RT_2CIF,   //2CIF
+  TN_RT_HALFD1,  //Half-D1
+  TN_RT_XHDF    //4,5M pixel
+} TN_RT_TYPE; //max display resolution
+
+typedef enum
+{
+  TN_MT_VIDEO = 0,
+  TN_MT_AUDIO,
+  TN_MT_AUDIO_UP
+}TN_MT_TYPE;
+
+typedef enum
+{
+  TN_MTC_UNKNOWN = 0,
+  TN_MTC_MPEG_1,
+  TN_MTC_MPEG_2,
+  TN_MTC_MPEG_4, 
+  TN_MTC_JPEG, 
+  TN_MTC_H_263, 
+  TN_MTC_H_264, 
+  TN_MTC_PCM, 
+  TN_MTC_G_711A, 
+  TN_MTC_G_711U, 
+  TN_MTC_G_722, 
+  TN_MTC_G_723_1, 
+  TN_MTC_GSM,
+  TN_MTC_SERIAL,
+  TN_MTC_MPEG1A2, 
+  TN_MTC_MPEG1A3,
+  TN_MTC_AAC,
+  TN_MTC_RAW_YUV420	= 0x00000020,  // For decoded stream, it comes in one of these types
+  TN_MTC_RAW_YUV422,
+  TN_MTC_RAW_RGB32,
+  TN_MTC_RAW_RGB888
+}TN_MTC_TYPE; //codec type
+
+typedef enum
+{
+    TN_CS_CONNECTED	=	0x00000001,
+    TN_CS_STREAMED	=	0x00000002,
+    TN_CS_DECODED	=	0x00000004,
+    TN_CS_DISPLAYED	=	0x00000008,
+    TN_CS_RECORDED	=	0x00000010,
+	TN_CS_TRY_CONNECT=	0x00000020
+} TN_CS_TYPE;
+
+typedef enum
+{
+  TN_ENCODED = 0,
+  TN_DECODED
+}TN_FORMAT_TYPE;
+
+typedef enum
+{
+  TN_LM_1X1=0,
+  TN_LM_2X2,
+  TN_LM_3X3,
+  TN_LM_4X4,
+  TN_LM_1_12,
+  TN_LM_2_8,
+  TN_LM_1_5,
+  TN_LM_5X5,
+  TN_LM_6X6,
+  TN_LM_7X7,
+  TN_LM_8X8,
+  TN_LM_2X3,
+  TN_LM_ARBITRARY = 0xff
+}TN_LM_MODE;
+
+typedef enum
+{
+  TN_ET_DI = 0,
+  TN_ET_VIDEOLOSS,
+  TN_ET_MOTION,
+  TN_ET_TIMECHANGED,
+  TN_ET_DO,
+  TN_ET_RECORD,
+  TN_ET_RESOLUTIONCHANGED,
+  TN_ET_AUDIO_SILENCE,
+  TN_ET_IVS_EVENT,
+  TN_ET_IVS_CONFIG_CHANGED
+}TN_ET_TYPE;
+
+typedef enum
+{
+  TN_ES_ERROR = -1,
+  TN_ES_OFF = 0,
+  TN_ES_ON = 1 
+}TN_ES_STATUS;
+
+typedef enum
+{
+/*  TN_PTZ_RIGHT = 0,
+  TN_PTZ_LEFT,
+  TN_PTZ_UP,
+  TN_PTZ_DOWN,
+  TN_PTZ_HOME,
+  TN_PTZ_TELE,
+  TN_PTZ_WIDE,
+  TN_PTZ_NEAR,
+  TN_PTZ_FAR,
+  TN_PTZ_AUTOPAN_START,
+  TN_PTZ_AUTOPAN_STOP,
+  TN_PTZ_PATROL_START,
+  TN_PTZ_PATROL_STOP,
+  TN_PTZ_STOP,
+  TN_PTZ_IRISAUTO*/
+  TN_PTZ_STOP     =0x00, 
+  TN_PTZ_CONTINUE   =0x01, 
+  TN_PTZ_LEFT     =0x02, 
+  TN_PTZ_RIGHT    =0x03, 
+  TN_PTZ_UP     =0x04, 
+  TN_PTZ_DOWN     =0x05, 
+  TN_PTZ_ZOOMIN   =0x06, 
+  TN_PTZ_ZOOMOUT    =0x07, 
+  TN_PTZ_FOCUSNEAR  =0x08, 
+  TN_PTZ_FOCUSFAR   =0x09, 
+  TN_PTZ_LEFTUP   =0x0A, 
+  TN_PTZ_LEFTDOWN   =0x0B, 
+  TN_PTZ_RIGHTUP    =0x0C, 
+  TN_PTZ_RIGHTDOWN  =0x0D, 
+  TN_PTZ_LIGHT_ON   =0x0E, 
+  TN_PTZ_LIGHT_OFF  =0x0F, 
+  TN_PTZ_POWER_ON   =0x10, 
+  TN_PTZ_POWER_OFF  =0x11, 
+  TN_PTZ_HOME     =0x12, 
+  TN_PTZ_AUTOPANSTART =0x13,
+  TN_PTZ_AUTOPANSTOP  =0x14, 
+  TN_PTZ_IRISCLOSE  =0x15, 
+  TN_PTZ_IRISOPEN   =0x16, 
+  TN_PTZ_IRISAUTO   =0x17, 
+  TN_PTZ_PATROLSTART  =0x18, 
+  TN_PTZ_PATROLSTOP =0x19,
+  TN_PTZ_CODE_WIPER_ON =0x1A,
+  TN_PTZ_CODE_WIPER_OFF =0x1B,
+  TN_PTZ_CODE_FOCUSAUTO =0x1C,
+  TN_PTZ_CODE_MENU_ON =0x1D,
+  TN_PTZ_CODE_MENU_OFF =0x1E,
+  TN_PTZ_CODE_MENU_ENTER =0x1F,
+  TN_PTZ_CODE_MENU_ESC =0x20,
+  TN_PTZ_CODE_MENU_UP =0x60,
+  TN_PTZ_CODE_MENU_DOWN =0x61,
+  TN_PTZ_CODE_MENU_RIGHT =0x62,
+  TN_PTZ_CODE_MENU_LEFT =0x63
+}TN_PTZ_CMD;
+
+typedef enum
+{
+  TN_OSD_TEXT = 0,
+  TN_OSD_BITMAP = 1,
+  TN_OSD_RECTANGLE = 2,
+  TN_OSD_EMPTY_RECTANGLE = 3
+}TN_OSD_TYPE;
+
+typedef enum{
+  TN_OSD_MODE_GDI = 0,
+  TN_OSD_MODE_D3D
+}TN_OSD_MODE;
+
+typedef enum
+{
+  TN_BTN_PLAYSTOP =   0x00000001,
+  TN_BTN_SNAPSHOT=  0x00000002,
+  TN_BTN_FULLSCREEN=  0x00000004,
+  TN_BTN_SPK_VOLUME=  0x00000008,
+  TN_BTN_MIC_VOLUME=  0x00000010,
+  TN_BTN_TALK=    0x00000020,
+  TN_BTN_MUTE=    0x00000040,
+  TN_BTN_RECORD=    0x00000080,
+  TN_BTN_ALL=     0xffffffff
+}TN_TOOLBAR_BTN;
+
+typedef enum
+{
+  TN_ST_ENCODER = 0,
+  TN_ST_DECODER,
+  TN_ST_DUPLEX,
+  TN_ST_DVR,
+  TN_ST_VIDEO_SERVER,
+  TN_ST_CMS
+}TN_SERVER_TYPE;
+
+typedef enum
+{
+	//D1 (max 768x576)
+  TN_RM_720X480 = 0,	//0 //0x80
+  TN_RM_720X240,		//1 //0x81
+  TN_RM_352X480,		//2 //0x82
+  TN_RM_352X240,		//3 //0x83
+  TN_RM_720x576,		//4 //0x84
+  TN_RM_720x288,		//5 //0x85
+  TN_RM_352x576,		//6 //0x86
+  TN_RM_352x288,		//7 //0x87
+  TN_RM_640x480,		//8 //0x88
+	//HD (max 1920x1344)
+  TN_RM_800x600,		//9 //0x89
+  TN_RM_1024x768,		//10 //0x8A
+  TN_RM_1280x960,		//11 //0x8B
+  TN_RM_1280x1024,		//12 //0x8C
+  TN_RM_1440x900,		//13 //0x8D
+  TN_RM_1600x900,		//14 //0x8E
+  TN_RM_1680x1050,		//15 //0x8F
+  TN_RM_1280x720,		//16 //0x90
+  TN_RM_1920x1080,		//17 //0x91
+  TN_RM_176x128,		//18 //0x92
+  TN_RM_176x144,		//19 //0x93
+
+	//additional formats. 
+  TN_RM_320X288,		//20 //0x94
+  TN_RM_360X288,		//21 //0x95 
+  TN_RM_320X240,		//22 //0x96
+  TN_RM_2048X1536,		//23 //0x97
+
+	//additional formats. 
+  TN_RM_2560X1600,   	//24 //0x98
+  TN_RM_2592X1936,		//25 //0x99
+  TN_RM_1920x1056,		//26 //0x9A
+  TN_RM_640x360,		//27
+  TN_RM_1440x540,		//28
+  TN_RM_1792x1344,		//29
+  TN_RM_1440x1080,		//30
+//ADDFORMAT
+  //27 ~ 30 are reserved for extension of "our resolutions"
+  //added newly
+  TN_RM_160x90 = 31,	//31 
+  TN_RM_160x100,		//32
+  TN_RM_160x120,		//33
+  TN_RM_180x120,		//34
+  TN_RM_240x180,		//35
+  TN_RM_320x180,		//36
+  TN_RM_320x200,		//37
+  TN_RM_360x244,		//38
+  TN_RM_480x270,		//39
+  TN_RM_480x300,		//40
+  TN_RM_480x360,		//41
+  TN_RM_640x400,		//42
+  TN_RM_800x450,		//43
+  TN_RM_800x500,		//44
+  TN_RM_1024x640,		//45
+  TN_RM_1280x800,		//46
+
+  TN_RM_1600x1200,		//47
+  TN_RM_1920x1200,		//48
+  TN_RM_704X480,		//49
+
+//asvzzz Bug 1844 05May2014
+  TN_RM_3840x2160,		//50
+  TN_RM_4096x2160,		//51
+//
+
+//asvzzz Bug 1893 21Jul2014
+  TN_RM_4000x3000,		//52
+  TN_RM_1280x768,		//53
+  TN_RM_1152x864,		//54
+  TN_RM_1360x768,		//55
+  TN_RM_1400x1050,		//56
+  TN_RM_2048x2048,		//57
+//
+
+//Note: All necessary places in projects marked as "//ADDFORMAT" 
+//If you want to add new resolutions - just search this string in all projects.
+
+  TN_RM_FIRST=TN_RM_720X480,
+//  TN_RM_LAST=TN_RM_640x360
+//  TN_RM_LAST=TN_RM_704X480
+//  TN_RM_LAST=TN_RM_4096x2160
+  TN_RM_LAST=TN_RM_2048x2048
+}TN_RESOLUTION;
+
+typedef enum
+{
+  TN_FPS_30_25 = 0,
+  TN_FPS_25_20,
+  TN_FPS_20_16,
+  TN_FPS_15_12,
+  TN_FPS_10,
+  TN_FPS_8,
+  TN_FPS_6,
+  TN_FPS_5,
+  TN_FPS_4,
+  TN_FPS_3,
+  TN_FPS_2,     // 0x0A      
+  TN_FPS_1,     // 0x0B
+  TN_FPS_06,    // 0x0C
+  TN_FPS_04,    // 0x0D
+  TN_FPS_02,    // 0x0E
+}TN_FRAMERATE;
+//Note: Besides the enumerations, value range 101 ~ 160 can be used for representing framerate 1 ~ 60fps:
+//		101 = 1fps
+//		102 = 2fps
+//		¡¦
+//		130 = 30fps
+//		¡¦
+//		150 = 50fps
+//		160 = 60fps
+
+
+typedef enum
+{
+  TN_REC_OFF =      0x00000000, 
+  TN_REC_TIMELAPS =   0x00000001, 
+  TN_REC_EVENT_SENSOR = 0x00000004,
+  TN_REC_EVENT_MOTION = 0x00000008, 
+  TN_REC_EVENT_VIDEOLOSS= 0x00000010
+} TN_RECORD_MODE;
+
+typedef enum 
+{ 
+  TN_NOTIFY_REC_ACTUAL_CHANGE=0,  //vData is actual record mode from TN_RECORD_MODE, VT_I4
+  TN_NOTIFY_REC_MODE_CHANGE,    //vData is new mode from TN_RECORD_MODE, VT_I4
+  TN_NOTIFY_REC_DISK_FULL,      //vData is disk name become full, VT_BSTR (recycle mode only?)
+  TN_NOTIFY_REC_DISK_CHANGE,     //vData is new recording disk name, VT_BSTR
+  TN_NOTIFY_REC_DISK_FORMATTING_PROGRESS, //vData is formatting progress [0, 100]
+  TN_NOTIFY_REC_DISK_FORMAT_RESULT,        //vData is format result. 0 is Ok
+  TN_NOTIFY_REC_DISK_FORMATTING_CANCEL,		//vData is disk name of cancelled formatting, VT_BSTR
+  TN_NOTIFY_NO_DATA_REC
+} TN_RECORD_NOTIFY;
+
+
+typedef enum
+{
+  TN_FF_SIMPLE_FRAME = 0x00000000,
+  TN_FF_NOTIME       = 0x00000001,
+  TN_FF_DISCONTINUITY = 0x00000002,
+  TN_FF_ENDOFSTREAM	  = 0x00000004,
+  TN_FF_KEYFRAME     = 0x00000200
+}TN_FRAME_FLAGS;
+
+typedef enum
+{
+  TN_RGN_OFF = 0,
+  TN_RGN_SET,
+  TN_RGN_ERASE,
+  TN_RGN_APPLY,
+  TN_RGN_ERASEALL,
+  TN_RGN_SETALL, 
+  TN_RGN_SET2,
+  TN_RGN_SET3,
+  TN_RGN_SET3_APPLY
+}TN_MOTION_RGN;
+
+typedef enum
+{
+  TN_MVD_PAUSE = 0,
+  TN_MVD_KEYFRAME,
+  TN_MVD_LIVE
+}TN_MOTION_VIDEO_MODE;
+
+typedef enum
+{
+  TN_DISPLAY_OFF = 0,
+  TN_DISPLAY_LEFT = 1,
+  TN_DISPLAY_TOP = 2,
+  TN_DISPLAY_RIGHT = 4,
+  TN_DISPLAY_BOTTOM = 8
+}TN_DISPLAY_POSITION;
+
+typedef enum
+{
+	TN_FILERECORD_START = 0
+	, TN_FILERECORD_STOP = 1
+	, TN_FILERECORD_VIDEO = 0
+	, TN_FILERECORD_VIDEO_AUDIO = 1
+	, TN_FILERECORD_SUBTITLES = 2
+	, TN_FILERECORD_SILENTMODE = 0
+	, TN_FILERECORD_ALERT = 4
+} TN_FILERECORD_IOCTL;
+
+typedef struct _BYTE_SIZEDARR_STM {
+  ULONG cbSize;     //sizeof(BYTE_SIZEDARR_STM)
+  int     eMediaType;   //TN_MT_TYPE
+  int     eDataFormat;     //TN_MTC_TYPE
+  int     eDataResolution; //TN_RESOLUTION
+  int   eFlags;     //TN_FRAME_FLAGS
+  ULONG   pts;      //pts
+  __int64 stime;	// server time
+  int   stride;     //stride/pitch of decoded stream, clSize== stride*height
+                        unsigned long   clSize;
+    [size_is(clSize)]   byte     *      pData ;
+} BYTE_SIZEDARR_STM;
+
+
+typedef struct _SERIAL_DATA
+{
+  ULONG cbSize;
+  unsigned long clSize;
+  [size_is(clSize)]  byte  *  pData;
+} SERIAL_DATA;
+
+typedef enum
+{
+  TN_DI_SENSOR_1 = 1,
+  TN_DI_SENSOR_2 = 2
+} TN_DI_TYPE;
+ 
+typedef enum
+{
+  TN_DO_BUZZER = 0,
+  TN_DO_RELAY_1 = 1,
+  TN_DO_RELAY_2 = 2
+} TN_DO_TYPE;
+
+typedef enum
+{
+  TN_COM_1 = 1,
+  TN_COM_2 = 2
+} TN_COM_PORT;
+
+typedef enum 
+{ 
+  TN_STAT_RECONNECT_COUNT= 0, 
+  TN_STAT_VIDEO_BITRATE, 
+  TN_STAT_VIDEO_FRAMERATE_DISPLAY, 
+  TN_STAT_VIDEO_RESOLUTION,
+  TN_STAT_AUDIO_BITRATE,
+  TN_STAT_VIDEO_FRAMERATE_RECORD,
+  TN_STAT_AUDIO_BACKWARD_LENGTH,
+  TN_STAT_AUDIO_BACKWARD_CURPOS
+ //... Can be added more
+} TN_STAT_TYPE;
+ 
+typedef enum 
+{ 
+  TN_SC_VIDEO_BITRATE= 0, 
+  TN_SC_VIDEO_FRAMERATE , 
+  TN_SC_VIDEO_RESOLUTION, 
+  TN_SC_VIDEO_BRIGHTNESS, 
+  TN_SC_VIDEO_CONTRAST, 
+  TN_SC_VIDEO_HUE, 
+  TN_SC_VIDEO_SATURATION, 
+  TN_SC_VIDEO_RESOLUTION_SEC,
+  TN_SC_VIDEO_STREAM
+ //... Can be added more
+} TN_SC_TYPE;
+
+typedef struct tag_stConfig {
+  int				nItem;			// server config item
+  unsigned long		cbSize;			// size of the config data
+  [size_is(cbSize)]	byte * pbData;	// config data
+} stConfig;
+
+typedef enum 
+{ 
+	TN_PB_SPEED_R1X	 = -1, 
+	TN_PB_SPEED_R2X	 = -2, 
+	TN_PB_SPEED_R4X  = -4, 
+	TN_PB_SPEED_R8X  = -8, 
+	TN_PB_SPEED_R16X = -16, 
+	TN_PB_SPEED_F1X  = 1, 
+	TN_PB_SPEED_F2X	 = 2,
+	TN_PB_SPEED_F4X  = 4, 
+	TN_PB_SPEED_F8X	 = 8, 
+	TN_PB_SPEED_F16X = 16, 
+} TN_PB_SPEED;
+
+typedef enum 
+{ 
+	TN_PB_EVENT_SENSOR		= 0x00000004,
+	TN_PB_EVENT_MOTION		= 0x00000008, 
+	TN_PB_EVENT_VIDEOLOSS	= 0x00000010
+} TN_PB_EVENT_TYPE;
+
+typedef enum 
+{ 
+	TN_PB_COMPRESSION_BMP = 0, 
+	TN_PB_COMPRESSION_JPEG, 
+} TN_PB_COMPRESSION_TYPE;
+
+typedef enum 
+{ 
+	TN_PB_STATE_STOP = 1, 
+	TN_PB_STATE_PAUSE, 
+	TN_PB_STATE_PLAY, 
+} TN_PB_STATES;
+
+typedef enum 
+{ 
+	TN_PB_NOTIFY_ERROR = 1, 
+	TN_PB_NOTIFY_ENDOFDATA, 
+	TN_PB_NOTIFY_STATECHANGED, 
+	TN_PB_NOTIFY_PLAYBACKTIME,
+} TN_PB_NOTIFY_CODES;
+
+typedef enum 
+{ 
+  TN_RPB_LATENCY  =0,// read from system 
+  TN_RPB_TIMEOUT, //1 
+  TN_RPB_TZ,	// return timezone info for remote server.
+  TN_RPB_ENUM_CHNLS,
+  TN_RPB_CHNL_FPS,//return frame rate for channel
+} TN_RPB_CONFIG;
+
+typedef enum
+{
+  TN_PB_EX_STORAGE_FILE = 0 // open selected file like a storage
+} TN_PB_EX_STORAGE_TYPE;
+
+typedef struct tag_stVsnmCmd {
+  int                   vCmd;           // VSNM Command
+  unsigned long         cbSize;         // size of the command data
+  [size_is(cbSize)]     byte * pbData;  // command data
+} stVsnmCmd;
+
+typedef struct _matrix_ch{
+	int switch_type;
+	int switch_id;
+	int switch_code;
+	int switch_out;
+	int switch2_type;
+	int switch2_id;
+	int switch2_code;
+	int switch2_out;
+	int ptz_type;
+	int ptz_id;
+}matrix_ch_t;
+
+typedef enum
+{
+  TN_WAV_STOP = 0,
+  TN_WAV_START,
+  TN_WAV_FILE_NOT_FOUND,
+  TN_WAV_FILE_WRONG_FMT,
+  TN_WAV_PROGRESS
+}TN_WAV_STATE;
+
+typedef enum
+{
+	TN_DEC_DEINTERLACE = 1,	//see TN_DEC_DEINTERLACE_VAL values
+	TN_DEC_SMP = 2,				//SMP decoding option
+	TN_DEC_MAX_THREADS = 3		//Max threads for channel option. 0: by default, i.e. 1 thread per CPU for each channel
+}TN_DEC_OPTION;
+
+typedef enum
+{
+	TN_DEINTERLACE_NONE=0, 
+	TN_DEINTERLACE_VERTICAL_SMOOTH=1, 
+	TN_DEINTERLACE_ONE_FIELD_INTERPOLATION=2, 
+	TN_DEINTERLACE_AUTO=4
+}TN_DEC_DEINTERLACE_VAL;
+
+typedef enum
+{
+  TN_OSD_NO_ALIGN		= 0x00000000,
+  TN_OSD_CENTER			= 0x00000001,
+  TN_OSD_TOP_LEFT		= 0x00000002,
+  TN_OSD_BOTTOM_RIGHT	= 0x00000004 
+}TN_OSD_ALIGN;
+
+typedef enum
+{
+  TN_ST_PRIMARY = 1,
+  TN_ST_SECONDARY_1,
+  TN_ST_SECONDARY_2,
+  TN_ST_SECONDARY_3
+} TN_ST_TYPE; //max display resolution
+
+
+//asvzzz
+typedef enum
+{
+	TN_TURN_OFF=0,
+	TN_TURN_AXIS_X=1,
+	TN_TURN_AXIS_Y=2,
+	TN_TURN_AXIS_XY=3
+}TN_TURN_DIRECTION;
+//asvzzz
+
+typedef enum
+{
+	TN_SN_DISPLAY_RECONFIGURE_MEMORY = 0
+} TN_SYSTEM_NOTIFY;
+
+typedef enum
+{
+  TN_PVT_OFF = 0,
+  TN_PVT_SET,
+  TN_PVT_ERASE,
+  TN_PVT_APPLY
+}TN_PVT_RGN;
+
+#pragma pack()
+
+	[
+    object,
+    uuid(EC99D4D7-15E4-49DB-97C2-80EB35FDB3EC),
+    dual,
+    helpstring("ITVSLiveControl Interface"),
+    pointer_default(unique)
+  ]
+  interface ITVSLiveControl : IDispatch
+  {
+	/// Access to the Display interface
+    [id(1), helpstring("method GetDisplay")]            HRESULT GetDisplay([out, retval] ITVSDisplay **ppDisplay);
+  
+    /// Local config                                    //eItem, see TN_LCI_TYPE  
+    [propget, id(2), helpstring("method LocalConfig")]        HRESULT LocalConfig([in] long eItem, [out, retval] VARIANT *vValue);
+    [propput, id(2), helpstring("method LocalConfig")]        HRESULT LocalConfig([in] long eItem, [in] VARIANT vValue);
+
+    /// Properties get
+    [propget, id(3), helpstring("property Protocol")]       HRESULT Protocol([in] INT_PTR lChID, [out, retval] BSTR *sProtocol);
+    [propget, id(4), helpstring("property Address")]        HRESULT Address([in] INT_PTR lChID, [out, retval] BSTR *sAddress);
+    [propget, id(5), helpstring("property Port")]         HRESULT Port([in] INT_PTR lChID, [out, retval] short *iPort);
+    [propget, id(6), helpstring("property LoginName")]        HRESULT LoginName([in] INT_PTR lChID, [out, retval] BSTR *sName);
+    [propget, id(7), helpstring("property VideoIndex")]       HRESULT VideoIndex([in] INT_PTR lChID, [out, retval] short *nIndex);
+    [propget, id(8), helpstring("property AudioIndex")]       HRESULT AudioIndex([in] INT_PTR lChID, [out, retval] short *nIndex);
+    [propget, id(9), helpstring("property MediaType")]        HRESULT MediaType([in] INT_PTR lChID, [out, retval] long *lType);
+    [propget, id(10), helpstring("property CameraName")]      HRESULT CameraName([in] INT_PTR lChID, [out, retval] BSTR *sName);  // maybe channel name?
+    [propget, id(11), helpstring("property IsEnabled")]       HRESULT IsEnabled([in] INT_PTR lChID, [out, retval] long *lEnabled);
+    [propget, id(12), helpstring("property PTZtype")]       HRESULT PTZtype([in] INT_PTR lChID, [out, retval] long *lType);
+    
+    /// Properties get/put
+    [propget, id(14), helpstring("property AutoReconnect")]     HRESULT AutoReconnect([in] INT_PTR lChID, [out, retval] VARIANT_BOOL *bReconnect);
+    [propput, id(14), helpstring("property AutoReconnect")]     HRESULT AutoReconnect([in] INT_PTR lChID, [in] VARIANT_BOOL bReconnect);
+    [propget, id(15), helpstring("property ConnectionTimeOut")]   HRESULT ConnectionTimeOut([in] INT_PTR lChID, [out, retval] long *lTimeout);
+    [propput, id(15), helpstring("property ConnectionTimeOut")]   HRESULT ConnectionTimeOut([in] INT_PTR lChID, [in] long lTimeout);
+    [propget, id(16), helpstring("property ReconnectionWait")]    HRESULT ReconnectionWait([in] INT_PTR lChID, [out, retval] long *lWait);
+    [propput, id(16), helpstring("property ReconnectionWait")]    HRESULT ReconnectionWait([in] INT_PTR lChID, [in] long lWait);
+    [propget, id(17), helpstring("property IOReadWriteTimeOut")]  HRESULT IOReadWriteTimeOut([in] INT_PTR lChID, [out, retval] short *iTimeout);
+    [propput, id(17), helpstring("property IOReadWriteTimeOut")]  HRESULT IOReadWriteTimeOut([in] INT_PTR lChID, [in] short iTimeout);
+    
+    /// Methods
+    [id(18), helpstring("method Connect")]              HRESULT Connect([in] BSTR pAddress, [in] BSTR pLoginName, [in] BSTR pPassword, [out, retval] INT_PTR *lChID);
+    [id(19), helpstring("method Disconnect")]           HRESULT Disconnect([in] INT_PTR lChID);
+                                                                
+    [id(20), helpstring("method Play")]               HRESULT Play([in] INT_PTR lChID, [out,retval] VARIANT_BOOL *bResult);  //  if lChID == -1, apply to all channels
+    [id(21), helpstring("method Pause")]              HRESULT Pause([in] INT_PTR lChID, [out, retval] VARIANT_BOOL *bResult);//  if lChID == -1, apply to all channels
+
+    [id(22), helpstring("method StartTalking")]           HRESULT StartTalking([in] INT_PTR lChID);
+    [id(23), helpstring("method StopTalking")]            HRESULT StopTalking([in] INT_PTR lChID);
+    [id(24), helpstring("method Snapshot")]             HRESULT Snapshot([in] INT_PTR lChID, [in] long lCompression, [in] VARIANT_BOOL bAutoSave);
+    [id(25), helpstring("method PreviewSnapshot")]          HRESULT PreviewSnapshot([in] INT_PTR lChID); // to resume, Play should be called.
+    [id(26), helpstring("method SaveSnapshot")]           HRESULT SaveSnapshot([in] INT_PTR lChID, [in] long lCompression, [in] BSTR pFilename);
+                                  //                      eFormat, see TN_FORMAT_TYPE 
+    [id(27), helpstring("method StartStreamDataEvent")]       HRESULT StartStreamDataEvent([in] INT_PTR lChID, [in] long eFormat);
+    [id(28), helpstring("method StopStreamDataEvent")]        HRESULT StopStreamDataEvent([in] INT_PTR lChID, [in] long eFormat);    
+
+    [id(29), helpstring("method SetDO")]				HRESULT SetDO([in] INT_PTR lChID, [in] short nIndex, [in] long pValue, [out, retval] VARIANT_BOOL *bResult);
+    [id(30), helpstring("method GetDI")]				HRESULT GetDI([in] INT_PTR lChID, [in] short nIndex, [out, retval] long *pVal);
+	[id(96), helpstring("method GetDO")]				HRESULT GetDO([in] INT_PTR lChID, [in] short nIndex, [out, retval] long *pVal);
+	[id(97), helpstring("method GetMotion")]			HRESULT GetMotion([in] INT_PTR lChID, [out, retval] long *pVal);
+	[id(98), helpstring("method GetVideoLoss")]			HRESULT GetVideoLoss([in] INT_PTR lChID, [out, retval] long *pVal);
+	[id(99), helpstring("method GetRecord")]			HRESULT GetRecord([in] INT_PTR lChID, [out, retval] long *pVal);
+    [id(31), helpstring("method SendSerialData")]         HRESULT SendSerialData([in] INT_PTR lChID, [in] short nIndex, [in] VARIANT vData, [out, retval] VARIANT_BOOL *bResult);
+    [id(32), helpstring("method SendPTZCommand")]         HRESULT SendPTZCommand([in] INT_PTR lChID, [in] long eCmd, [out, retval] VARIANT_BOOL *bResult);
+    [id(33), helpstring("method SetPTZControlSpeed")]       HRESULT SetPTZControlSpeed([in] INT_PTR lChID, [in] short nType/* 0:PAN, 1:TILT*/, [in] long lSpeed, [out, retval] VARIANT_BOOL *bResult);
+    [id(34), helpstring("method GetPTZPresetList")]         HRESULT GetPTZPresetList([in] INT_PTR lChID, [out, retval] VARIANT* pvData);
+    [id(35), helpstring("method SetPTZPreset")]				HRESULT SetPTZPreset([in] INT_PTR lChID, [in] VARIANT vPresetID, [out, retval] VARIANT_BOOL *bResult);
+    [id(82), helpstring("method GetPTZPosition")]         HRESULT GetPTZPosition([in] INT_PTR lChID, [out] long *plPan, [out] long *plTilt, [out] long *plZoom, [out] long *plFocus, [out, retval] VARIANT_BOOL *bResult);
+    [id(83), helpstring("method SetPTZPosition")]         HRESULT SetPTZPosition([in] INT_PTR lChID, [in]  long lPan,   [in]  long lTilt,   [in]  long lZoom,   [in]  long lFocus,   [out, retval] VARIANT_BOOL *bResult);
+    [id(89), helpstring("method ClearPTZPreset")]         HRESULT ClearPTZPreset([in] INT_PTR lChID, [in] VARIANT vPresetID, [out, retval] VARIANT_BOOL *bResult);
+    [id(90), helpstring("method GoToPTZPreset")]          HRESULT GoToPTZPreset( [in] INT_PTR lChID, [in] VARIANT vPresetID, [out, retval] VARIANT_BOOL *bResult);
+
+
+    /// Decoder control
+    [propget, id(36), helpstring("property Deinterlacing")]       HRESULT Deinterlacing([in] INT_PTR lChID, [out, retval] VARIANT_BOOL *bDeinterlace);
+    [propput, id(36), helpstring("property Deinterlacing")]       HRESULT Deinterlacing([in] INT_PTR lChID, [in] VARIANT_BOOL bDeinterlace);
+    [propget, id(37), helpstring("property KeepAspectRatio")]     HRESULT KeepAspectRatio([in] INT_PTR lChID, [out, retval] VARIANT_BOOL *bAspect);
+    [propput, id(37), helpstring("property KeepAspectRatio")]     HRESULT KeepAspectRatio([in] INT_PTR lChID, [in] VARIANT_BOOL bAspect);
+    [propget, id(38), helpstring("property ViewKeyFrameOnly")]      HRESULT ViewKeyFrameOnly([in] INT_PTR lChID, [out, retval] VARIANT_BOOL *bKeyOnly);
+    [propput, id(38), helpstring("property ViewKeyFrameOnly")]      HRESULT ViewKeyFrameOnly([in] INT_PTR lChID, [in] VARIANT_BOOL bKeyOnly);
+    [propget, id(39), helpstring("property DecodeVisibleChannelOnly")]  HRESULT DecodeVisibleChannelOnly([in] INT_PTR lChID, [out, retval] VARIANT_BOOL *bVisible);
+    [propput, id(39), helpstring("property DecodeVisibleChannelOnly")]  HRESULT DecodeVisibleChannelOnly([in] INT_PTR lChID, [in] VARIANT_BOOL bVisible);
+    
+    /// Statistics                                                //eParam, see TN_STAT_TYPE
+    [propget, id(84), helpstring("property Statistics")]        HRESULT Statistics([in] INT_PTR lChID, [in] long eParam, [out, retval] VARIANT *vValue);
+    /*[propget, id(41), helpstring("property TotalReconnectionCount")]  HRESULT TotalReconnectionCount([in] INT_PTR lChID, [out, retval] long *cReconnect);
+  [propget, id(44), helpstring("property Resolution")]        HRESULT Resolution([in] INT_PTR lChID, [out, retval] short *eRes);
+    [propget, id(45), helpstring("property Framerate")]         HRESULT Framerate([in] INT_PTR lChID, [out, retval] short *fpsVideo);
+    [propget, id(46), helpstring("property VideoBitrate")]        HRESULT VideoBitrate([in] INT_PTR lChID, [out, retval] short *bpsVideo);
+    [propget, id(47), helpstring("property AudioBitrate")]        HRESULT AudioBitrate([in] INT_PTR lChID, [out, retval] short *bpsAudio);
+  */
+                                                      //eParam, see TN_SC_TYPE
+    [propget, id(85), helpstring("property ServerConfig")]        HRESULT ServerConfig([in] INT_PTR lChID, [in] long eParam, [out, retval] VARIANT *vValue);
+    [propput, id(85), helpstring("property ServerConfig")]        HRESULT ServerConfig([in] INT_PTR lChID, [in] long eParam, [in] VARIANT vValue);
+	[id(86), helpstring("method SetMotionRegionEdit")]          HRESULT SetMotionRegionEdit([in] INT_PTR lChID, [in] long lMode, [in] long lVideoMode, [out, retval] VARIANT_BOOL *pVal);
+	[id(87), helpstring("method ConfigCameraModule")]         HRESULT ConfigCameraModule([in] INT_PTR lChID, [in] long lCode, [in] long lState, [out, retval] VARIANT_BOOL *pVal);
+    
+    /// Server related info
+    [propget, id(48), helpstring("property ServerName")]        HRESULT ServerName([in] INT_PTR lChID, [out, retval] BSTR *sName);
+    [propput, id(48), helpstring("property ServerName")]        HRESULT ServerName([in] INT_PTR lChID, [in] BSTR sName);
+    [propget, id(49), helpstring("property ServerType")]        HRESULT ServerType([in] INT_PTR lChID, [out, retval] long *eType);
+    [propget, id(50), helpstring("property VideoChnls")]        HRESULT VideoChnls([in] INT_PTR lChID, [out, retval] long *cVideo);
+    [propget, id(51), helpstring("property AudioChnls")]        HRESULT AudioChnls([in] INT_PTR lChID, [out, retval] long *cAudio);
+    [propget, id(52), helpstring("property DIChnls")]         HRESULT DIChnls([in] INT_PTR lChID, [out, retval] long *cDI);
+    [propget, id(53), helpstring("property DOChnls")]         HRESULT DOChnls([in] INT_PTR lChID, [out, retval] long *cDO);
+    [propget, id(54), helpstring("property VideoCodec")]        HRESULT VideoCodec([in] INT_PTR lChID, [out, retval] long *eVideo);
+    [propget, id(55), helpstring("property AudioCodec")]        HRESULT AudioCodec([in] INT_PTR lChID, [out, retval] long *eAudio);
+    [propget, id(56), helpstring("property ServerTime")]        HRESULT ServerTime([in] INT_PTR lChID, [out, retval] long *tTime);
+    [propget, id(57), helpstring("property ServerTimeZone")]      HRESULT ServerTimeZone([in] INT_PTR lChID, [out, retval] long *tZone);
+
+    /// Recording properties
+    [propget, id(60), helpstring("property LogEvent")]          HRESULT LogEvent([out, retval] VARIANT_BOOL *bLog);
+    [propput, id(60), helpstring("property LogEvent")]          HRESULT LogEvent([in] VARIANT_BOOL bLog);
+    [propget, id(61), helpstring("property StorageRecycle")]      HRESULT StorageRecycle([out, retval] long *lRecycle);
+    [propput, id(61), helpstring("property StorageRecycle")]      HRESULT StorageRecycle([in] long lRecycle);
+    [propget, id(62), helpstring("property PreEventTime")]        HRESULT PreEventTime([in] INT_PTR lChID, [out, retval] long *tPreEvent);
+    [propput, id(62), helpstring("property PreEventTime")]        HRESULT PreEventTime([in] INT_PTR lChID, [in] long tPreEvent);
+    [propget, id(63), helpstring("property PostEventTime")]       HRESULT PostEventTime([in] INT_PTR lChID, [out, retval] long *tPostEvent);
+    [propput, id(63), helpstring("property PostEventTime")]       HRESULT PostEventTime([in] INT_PTR lChID, [in] long tPostEvent);
+
+    /// Recording storages
+    [propget, id(64), helpstring("property AllocSize")]         HRESULT AllocSize([in] BSTR pPath, [out, retval] VARIANT *vAlloc);
+    [propget, id(65), helpstring("property UsedSize")]          HRESULT UsedSize([in] BSTR pPath, [out, retval] VARIANT *vUsed);
+    [id(66), helpstring("method RecordDuration")]           HRESULT RecordDuration([in] BSTR pPath, [out] VARIANT *pvBegin, [out] VARIANT *pvEnd, [out, retval] VARIANT_BOOL *bResult);
+    [id(67), helpstring("method GetStorageList")]           HRESULT GetStorageList([out, retval] VARIANT* pvData);
+    [id(68), helpstring("method AllocStorage")]             HRESULT AllocStorage([in] BSTR pPath, [in] long mbSize, [out, retval] VARIANT_BOOL *bResult);
+    [id(100), helpstring("method AllocStorageFast")]         HRESULT AllocStorageFast([in] BSTR pPath, [in] long mbSize, [out, retval] VARIANT_BOOL *bResult);
+    [id(101), helpstring("method CancelAllocStorage")]       HRESULT CancelAllocStorage([in] BSTR pPath, [out, retval] VARIANT_BOOL *bResult);
+	[id(102), helpstring("method GetDiskList")] HRESULT GetDiskList(VARIANT *pvData);
+	[id(103), helpstring("method Connect2")] HRESULT Connect2([in] BSTR pAddress, [in] BSTR pLoginName, [in] BSTR pPassword, [in] BSTR pSSAddress, [in] BSTR pSSLoginName, [in] BSTR pSSPassword, [out, retval] INT_PTR *lChID);
+	[propget, id(104), helpstring("property VideoOn")] HRESULT VideoOn(INT_PTR lChID, [out, retval] VARIANT_BOOL *pVal);
+	[propput, id(104), helpstring("property VideoOn")] HRESULT VideoOn(INT_PTR lChID, [in] VARIANT_BOOL newVal);
+
+    [id(69), helpstring("method FreeStorage")]              HRESULT FreeStorage([in] BSTR pPath, [out, retval] VARIANT_BOOL *bResult);
+    [id(70), helpstring("method AddStorage")]             HRESULT AddStorage([in] BSTR pPath, [out, retval] VARIANT_BOOL *bResult);
+    [id(71), helpstring("method DropStorage")]              HRESULT DropStorage([in] BSTR pPath, [out, retval] VARIANT_BOOL *bResult);
+    [id(88), helpstring("method FreeRecordPeriod")]          HRESULT FreeRecordPeriod([in] BSTR pPath, [in] VARIANT vBegin, [in] VARIANT vEnd, [out, retval] VARIANT_BOOL *bResult);
+    [propget, id(92), helpstring("property Formatting")]     HRESULT Formatting([out, retval] VARIANT_BOOL *bResult);
+    [propget, id(93), helpstring("property FormatResult")]   HRESULT FormatResult([out, retval] VARIANT *vResult);
+    [id(94), helpstring("method SetServerConfig")]           HRESULT SetServerConfig([in] INT_PTR lChID,  [in] int cItems, [in, size_is(cItems)] stConfig* vItems, [out, retval] VARIANT_BOOL *bResult);
+    [id(95), helpstring("method GetServerConfig")]           HRESULT GetServerConfig([in] INT_PTR lChID,  [in] int cItems, [in, out, size_is(cItems)] stConfig* vItems, [out, retval] VARIANT_BOOL *bResult);
+
+    /// Recording events
+    [id(72), helpstring("method GetEventForChannelRecord")]       HRESULT GetEventForChannelRecord([in] INT_PTR lChID, [in] long eEventType, [out] long* pEventMap, [out, retval] long *lResult);
+    [id(73), helpstring("method SetEventForChannelRecord")]       HRESULT SetEventForChannelRecord([in] INT_PTR lChID, [in] long eEventType, [in] long lEventMap, [out, retval] long *lResult);
+
+  /// Recording mode (values from TN_RECORD_MODE enum)
+    [propget, id(74), helpstring("property RecordingMode")]       HRESULT RecordingMode([in] INT_PTR lChID, [out, retval] long *eMode);
+    [propput, id(74), helpstring("property RecordingMode")]       HRESULT RecordingMode([in] INT_PTR lChID, [in] long eMode);
+
+    /// Start/Stop recording
+    [id(75), helpstring("method StartRecord")]              HRESULT StartRecord([out, retval] VARIANT_BOOL *bResult);
+    [id(76), helpstring("method StopRecord")]             HRESULT StopRecord([out, retval] VARIANT_BOOL *bResult);
+    [propget, id(91), helpstring("property Recording")]       HRESULT Recording([out, retval] VARIANT_BOOL *bResult);
+
+    /// File recording
+//    [id(77), helpstring("method StartFileRecord")]            HRESULT StartFileRecord([in] INT_PTR lChID, [in] VARIANT_BOOL bAudio, [in] BSTR pPath, [out, retval] long *phrResult);
+	//	lFlags		0: Video only / no smi
+    //				1: Video+audio / no smi
+    //				2: Video only / smi
+    //				3: Video+audio / smi
+    [id(77), helpstring("method StartFileRecord")]            HRESULT StartFileRecord([in] INT_PTR lChID, [in] long lFlags, [in] BSTR pPath, [out, retval] long *phrResult);
+
+    [id(78), helpstring("method StopFileRecord")]           HRESULT StopFileRecord([in] INT_PTR lChID, [out, retval] VARIANT_BOOL *bResult);
+
+  /// Get Channel state                                           //out is bitmask of TN_CS_TYPE
+    [propget, id(79), helpstring("property ChannelState")]        HRESULT ChannelState([in] INT_PTR lChID, [out, retval] long *lState);
+
+  /// Activate/Deactivate audio                   //VARIANT_TRUE: Audio Off (Default), VARIANT_FALSE: Audio On
+    [id(80), helpstring("method SetMute")]                HRESULT SetMute([in] INT_PTR lChID, [in] VARIANT_BOOL bMute);
+    [id(81), helpstring("method GetMute")]                HRESULT GetMute([in] INT_PTR lChID, [out, retval] VARIANT_BOOL *bMuted);
+
+	//Optional. Recording order [0...N] of channel (for channel list/tree-view construction in reader/search)
+    [propput, id(105), helpstring("property RecordingOrder")]       HRESULT RecordingOrder([in] INT_PTR lChID, [in] long lOrder);
+		[id(106), helpstring("method SendVSNMCommand")] HRESULT SendVSNMCommand([in] INT_PTR lChID,  [in] stVsnmCmd* vCmd, [out,retval] VARIANT_BOOL *bResult);
+		[id(107), helpstring("method PlayWaveToServer")] HRESULT PlayWaveToServer(INT_PTR lChID, BSTR pPath);
+		[id(108), helpstring("method StopWaveToServer")] HRESULT StopWaveToServer(INT_PTR lChID);
+		[id(109), helpstring("method StartOnScreenPTZ")] HRESULT StartOnScreenPTZ();
+		[id(110), helpstring("method StopOnScreenPTZ")] HRESULT StopOnScreenPTZ();
+		[id(111), helpstring("method SetOsdRectangle")] HRESULT SetOsdRectangle(INT_PTR lChID, long lColor, long lWidth, long lOffset);
+		[id(112), helpstring("method RemoveOsdRectangle")] HRESULT RemoveOsdRectangle(INT_PTR lChID);
+
+	//Optional. Decoder options.										[in] long param see from TN_DEC_OPTION
+    [propget, id(113), helpstring("property DecodingOption")]          HRESULT DecodingOption([in] long param, [out, retval] long *value);
+    [propput, id(113), helpstring("property DecodingOption")]          HRESULT DecodingOption([in] long param, [in] long value);
+		[id(114), helpstring("method GetSnapshot")] HRESULT GetSnapshot([in] INT_PTR lChID, [in] long lCompression/*0: BMP, 1-100: JPEG compression rate*/, [in] long xWidth/*0: original resolution*/, [in] long yHeight/*0: original resolution*/, [out] VARIANT* data, [out] long* size);
+		[id(115), helpstring("method RenamePTZPreset")] HRESULT RenamePTZPreset(INT_PTR lChID, VARIANT vPresetID, BSTR pName, VARIANT_BOOL *pVal);
+
+	//Optional. IVS
+	[id(116), helpstring("method AddIVSFilter")] HRESULT AddIVSFilter([in] INT_PTR lChID, IUnknown **ppIVSFlt);
+	[id(117), helpstring("method RemoveIVSFilter")] HRESULT RemoveIVSFilter([in] INT_PTR lChID);
+	[id(118), helpstring("method GetIVSFilter")] HRESULT GetIVSFilter([in] INT_PTR lChID, IUnknown **ppIVSFlt);
+	[id(119), helpstring("method StartIVSProcess")] HRESULT StartIVSProcess([in] INT_PTR lChID);
+	[id(120), helpstring("method StopIVSProcess")] HRESULT StopIVSProcess([in] INT_PTR lChID);
+
+	// PTZ position 2
+    [id(121), helpstring("method SetPTZPosition2")] HRESULT SetPTZPosition2([in] INT_PTR lChID, [in]  long lPan,   [in]  long lTilt,   [in]  long lZoom,   [in]  long lFocus, [in] long   lMode,  [out, retval] VARIANT_BOOL *bResult);
+	[propget, id(122), helpstring("property StreamType")] HRESULT StreamType([in] INT_PTR lChID, [out, retval] short *pVal);
+
+	//Methods for existing properties: added to avoid problems in IE9.0
+	[id(123), helpstring("method SetLocalConfig")] HRESULT SetLocalConfig([in]long eItem, [in] VARIANT newVal);
+	[id(124), helpstring("method GetLocalConfig")] HRESULT GetLocalConfig([in] long eItem, [out, retval] VARIANT *vValue);
+	[id(125), helpstring("method SetSnapshotAspectRatio")] HRESULT SetSnapshotAspectRatio([in] long nAspect);
+	[id(126), helpstring("method SetAutoReconnect")] HRESULT SetAutoReconnect([in] INT_PTR lChID, [in] VARIANT_BOOL bReconnect);
+	[id(127), helpstring("method GetAutoReconnect")] HRESULT GetAutoReconnect([in] INT_PTR lChID, [out, retval] VARIANT_BOOL *bReconnect);
+	[id(128), helpstring("method SetDecodingOption")] HRESULT SetDecodingOption([in] long param, [in] long value);
+	[id(129), helpstring("method GetDecodingOption")] HRESULT GetDecodingOption([in] long param, [out, retval] long *value);
+
+	[id(130), helpstring("method FindLocation")] HRESULT FindLocation([in]BSTR begin, [out, retval] BSTR *bResult);
+	//jskim added for onvif : 2011.05.31
+	[id(131), helpstring("method GetTiltPosition")] HRESULT GetTiltPosition([in] INT_PTR lChID,[out, retval] long *value);
+	//jskim added 06:27 for UAC
+	[id(132), helpstring("method RunElevatedWeb")] HRESULT RunElevatedWeb([in] BSTR szURL);
+	[id(133), helpstring("method NeedElevation")] HRESULT NeedElevation([out, retval] long *value);
+	[id(134), helpstring("method ClearPTZPresetString")] HRESULT ClearPTZPresetString([in] INT_PTR lChID, [in] VARIANT vPresetID, [in] BSTR strName, [out,retval] VARIANT_BOOL* bResult);
+	[id(135), helpstring("method GoToPTZPresetString")] HRESULT GoToPTZPresetString([in] INT_PTR lChID, [in] VARIANT vPresetID, [in] BSTR strName, [out,retval] VARIANT_BOOL* bResult);
+	[id(136), helpstring("method SetPTZPresetString")] HRESULT SetPTZPresetString([in] INT_PTR lChID, [in] VARIANT vPresetID, [in] BSTR strName, [out,retval] VARIANT_BOOL* pVal);
+	//yikim added for motion editing
+	[id(137), helpstring("method SetMotionRegionEdit2")]          HRESULT SetMotionRegionEdit2([in] INT_PTR lChID,[in] long lRegion, [in] long lMode, [in] long lVideoMode, [out, retval] VARIANT_BOOL *pVal);
+	[id(138), helpstring("method SetPrivacyRegionEdit")]          HRESULT SetPrivacyRegionEdit([in] INT_PTR lChID,[in] long lRegion, [in] long lMode, [in] long lVideoMode, [out, retval] VARIANT_BOOL *pVal);
+
+	//asvzzz 26apr2012 fullscreen in TVSL
+	[id(139), helpstring("method SetFullScreen")]HRESULT SetFullScreen([in] INT_PTR lChID, [in] long mode);
+	[id(140), helpstring("method GetFullScreen")]HRESULT GetFullScreen([in] INT_PTR lChID, [out, retval] long *mode);
+
+	[id(141), helpstring("method SetDecoder")]HRESULT SetDecoder([in] DWORD decoder);
+	[id(142), helpstring("method GetDecoder")]HRESULT GetDecoder([out, retval] DWORD* decoder);
+	[id(143), helpstring("method GetAvailableDecoders")]HRESULT GetAvailableDecoders([out, retval] DWORD* decoders);
+	[id(144), helpstring("method SetSoftMute")]HRESULT SetSoftMute([in] INT_PTR lChID, [in] VARIANT_BOOL bMute);
+	[propget, id(145), helpstring("property AudioOn")] HRESULT AudioOn(INT_PTR lChID, [out, retval] VARIANT_BOOL *pVal);
+	[propput, id(145), helpstring("property AudioOn")] HRESULT AudioOn(INT_PTR lChID, [in] VARIANT_BOOL newVal);
+	[id(146), helpstring("method SetScaleEnable")] HRESULT SetScaleEnable([in] INT_PTR lChID, [in] long lMode, [in] long lID);
+	[id(147), helpstring("method SetScaleEdit")] HRESULT SetScaleEdit([in] INT_PTR lChID, [in] long lID, [in] long lStartX, [in] long lStartY, [in] long lWidth, [in] long lHeight, [out, retval] VARIANT_BOOL *pVal);	
+	[id(148), helpstring("method GetScaleX")] HRESULT GetScaleX([in] INT_PTR lChID, [in] long lID, [out,retval] long *lVal);
+	[id(149), helpstring("method GetScaleY")] HRESULT GetScaleY([in] INT_PTR lChID, [in] long lID, [out,retval] long *lVal);
+	[id(150), helpstring("method GetScaleWidth")] HRESULT GetScaleWidth([in] INT_PTR lChID, [in] long lID, [out,retval] long *lVal);
+	[id(151), helpstring("method GetScaleHeight")] HRESULT GetScaleHeight([in] INT_PTR lChID, [in] long lID, [out,retval] long *lVal);
+
+	
+	/// Access to the IVS interface
+    [id(152), helpstring("method GetIVSControl")]            HRESULT GetIVSControl([out, retval] ITVSIVSControl **ppIVSControl);
+
+	[id(153), helpstring("method SetCropEnable")] HRESULT SetCropEnable([in] INT_PTR lChID, [in] long lMode, [in] long lID);
+	[id(154), helpstring("method SetCropEdit")] HRESULT SetCropEdit([in] INT_PTR lChID, [in] long lID, [in] long lStartX, [in] long lStartY, [in] long lWidth, [in] long lHeight, [out, retval] VARIANT_BOOL *pVal);	
+	[id(155), helpstring("method GetCropX")] HRESULT GetCropX([in] INT_PTR lChID, [in] long lID, [out,retval] long *lVal);
+	[id(156), helpstring("method GetCropY")] HRESULT GetCropY([in] INT_PTR lChID, [in] long lID, [out,retval] long *lVal);
+	[id(157), helpstring("method GetCropWidth")] HRESULT GetCropWidth([in] INT_PTR lChID, [in] long lID, [out,retval] long *lVal);
+	[id(158), helpstring("method GetCropHeight")] HRESULT GetCropHeight([in] INT_PTR lChID, [in] long lID, [out,retval] long *lVal);
+	[id(159), helpstring("method StatShowTrigger")] HRESULT StatShowTrigger();
+  };
+
+  //next free id is 159
+
+
+
+	[
+    object,
+    uuid(7154F7B1-FD89-43a5-850F-6731A1CE93F3),
+    dual,
+    helpstring("ITVSDecodeControl Interface"),
+    pointer_default(unique)
+  ]
+  interface ITVSDecodeControl : IDispatch
+  {
+    /// Access to the Display interface
+    [id(1), helpstring("method GetDisplay")]		HRESULT GetDisplay([out, retval] ITVSDisplay **ppDisplay);
+  
+    /// Methods
+    [id(2), helpstring("method Open")]				HRESULT Open([in] VARIANT_BOOL bDisplay, [in] VARIANT_BOOL bEvent, [in] IUnknown* pCallback/*NULL - OFF*/, [out, retval] INT_PTR *lChID);
+    [id(3), helpstring("method Close")]				HRESULT Close([in] INT_PTR lChID, [out,retval] VARIANT_BOOL *bResult);
+																					//vData.vt == VT_BYREF | VT_UI1 ; pbVal = BYTE_SIZEDARR_STM * ;
+    [id(4), helpstring("method PutData")]			HRESULT PutData([in] INT_PTR lChID, [in] VARIANT vData, [out,retval] VARIANT_BOOL *bResult);
+    [id(5), helpstring("method StartDecoding")]		HRESULT StartDecoding([in] INT_PTR lChID, [out,retval] VARIANT_BOOL *bResult);		//  if lChID == -1, apply to all channels
+    [id(6), helpstring("method StopDecoding")]		HRESULT StopDecoding([in] INT_PTR lChID, [out, retval] VARIANT_BOOL *bResult);		//  if lChID == -1, apply to all channels
+		//optional																				//eDataFormat, see TN_MTC_TYPE
+    [id(7), helpstring("method SetOutputFormat")]	HRESULT SetOutputFormat([in] INT_PTR lChID, [in] int eDataFormat, [out, retval] VARIANT_BOOL *bResult);		//  if lChID == -1, apply to all channels
+
+	//Optional. Decoder options.										[in] long param see from TN_DEC_OPTION
+    [propget, id(8), helpstring("property DecodingOption")]          HRESULT DecodingOption([in] long param, [out, retval] long *value);
+    [propput, id(8), helpstring("property DecodingOption")]          HRESULT DecodingOption([in] long param, [in] long value);
+	  //next free id is 9
+  };
+
+  	[
+    object,
+    uuid(C0967DFC-ABA0-40d5-9CBB-5E5B12170937),
+    dual,
+    helpstring("ITVSDecodeCallback Interface"),
+    pointer_default(unique)
+  ]
+  interface ITVSDecodeCallback : IUnknown
+	{
+		[id(1), helpstring("method OnDataReceive")] HRESULT OnDataReceive([in] INT_PTR lChID, [in] VARIANT vData, [in] long lError);
+	};
+
+
+	[
+    object,
+    uuid(234BDCD3-2720-4876-A2F0-DE9A715BF21A),
+    dual,
+    helpstring("ITVSDisplay Interface"),
+    pointer_default(unique)
+  ]
+  interface ITVSDisplay : IDispatch
+  {
+    // Multi-monitor
+    [propget, id(100), helpstring("property MonitorCount")]   HRESULT MonitorCount([out, retval] short *cMonitor);
+
+    // Layout                                     //eLayoutMode, see TN_LM_MODE
+    [propget, id(101), helpstring("property LayoutMode")]   HRESULT LayoutMode([in] short nMonitor, [out, retval] long *eLayout);
+    [propput, id(101), helpstring("property LayoutMode")]   HRESULT LayoutMode([in] short nMonitor, [in] long eLayout);
+
+    // Display Units opeartions
+    [propget, id(102), helpstring("property DUCount")]      HRESULT DUCount([in] short nMonitor, [out, retval] long *cCount);
+    [propput, id(102), helpstring("property DUCount")]      HRESULT DUCount([in] short nMonitor, [in] long nCount);
+    [propget, id(103), helpstring("property MapChannel")]   HRESULT MapChannel([in] short nMonitor, [in] long nDU, [out, retval] INT_PTR *lChID);
+    [propput, id(103), helpstring("property MapChannel")]   HRESULT MapChannel([in] short nMonitor, [in] long nDU, [in] INT_PTR lChID);
+    [id(104), helpstring("method SetDURect")]         HRESULT SetDURect([in] short nMonitor, [in] long nDU, [in] short nLeft, [in] short nTop, [in] short nRight, [in] short nBottom, [out, retval] VARIANT_BOOL *bResult);
+    [id(105), helpstring("method GetDURect")]         HRESULT GetDURect([in] short nMonitor, [in] long nDU, [out] short *pnLeft, [out] short *pnTop, [out] short *pnRight, [out] short *pnBottom, [out, retval] VARIANT_BOOL *bResult);
+
+    // Toolbar
+    [propget, id(115), helpstring("property ShowToolbar")]    HRESULT ShowToolbar([in] INT_PTR lChID, [out, retval] VARIANT_BOOL *bToolbar);
+    [propput, id(115), helpstring("property ShowToolbar")]    HRESULT ShowToolbar([in] INT_PTR lChID, [in] VARIANT_BOOL bToolbar);
+    [propget, id(116), helpstring("property ToolbarConfig")]  HRESULT ToolbarConfig([in] INT_PTR lChID, [out, retval] long *eConfig);
+    [propput, id(116), helpstring("property ToolbarConfig")]  HRESULT ToolbarConfig([in] INT_PTR lChID, [in] long eConfig);
+
+    // OSD 
+    [id(121), helpstring("method AddOsdArea")]          HRESULT AddOsdArea([in] INT_PTR lChID, [in] short nLeft, [in] short nTop, [in] short nRight, [in] short nBottom, [in] short nType, [out, retval] INT_PTR *pOSDID);
+    [id(122), helpstring("method RemoveOsdArea")]       HRESULT RemoveOsdArea([in] INT_PTR lOSDID);
+    [id(123), helpstring("method UpdateOsdArea")]       HRESULT UpdateOsdArea([in] INT_PTR lOSDID, [in] VARIANT vData);
+    [propget, id(124), helpstring("property OsdType")]      HRESULT OsdType([in] INT_PTR lOSDID, [out, retval] short *eType);
+    [propget, id(125), helpstring("property OsdForeColor")]   HRESULT OsdForeColor([in] INT_PTR lOSDID, [out, retval] long *clrFore);
+    [propput, id(125), helpstring("property OsdForeColor")]   HRESULT OsdForeColor([in] INT_PTR lOSDID, [in] long clrFore);
+    [propget, id(126), helpstring("property OsdBackColor")]   HRESULT OsdBackColor([in] INT_PTR lOSDID, [out, retval] long *clrBack);
+    [propput, id(126), helpstring("property OsdBackColor")]   HRESULT OsdBackColor([in] INT_PTR lOSDID, [in] long clrBack);
+    [propget, id(127), helpstring("property OsdTransparency")]  HRESULT OsdTransparency([in] INT_PTR lOSDID, [out, retval] VARIANT_BOOL *bResult);
+    [propput, id(127), helpstring("property OsdTransparency")]  HRESULT OsdTransparency([in] INT_PTR lOSDID, [in] VARIANT_BOOL bResult);
+    [propget, id(128), helpstring("property OsdFontName")]    HRESULT OsdFontName([in] INT_PTR lOSDID, [out, retval] BSTR *sName);
+    [propput, id(128), helpstring("property OsdFontName")]    HRESULT OsdFontName([in] INT_PTR lOSDID, [in] BSTR sName);
+    [propget, id(129), helpstring("property OsdFontSize")]    HRESULT OsdFontSize([in] INT_PTR lOSDID, [out, retval] short *iSize);
+    [propput, id(129), helpstring("property OsdFontSize")]    HRESULT OsdFontSize([in] INT_PTR lOSDID, [in] short iSize);
+		[id(130), helpstring("method SetDigitalZoom")] HRESULT SetDigitalZoom(INT_PTR lChID, long  lZoom, long  xStart, long  yStart);
+		[id(131), helpstring("method GetDigitalZoom")] HRESULT GetDigitalZoom(INT_PTR lChID, long* lZoom, long* xStart, long* yStart);
+		[propget, id(132), helpstring("property DUMaximize")] HRESULT DUMaximize(short nMonitor, long nDU, [out, retval] VARIANT_BOOL *pVal);
+		[propput, id(132), helpstring("property DUMaximize")] HRESULT DUMaximize(short nMonitor, long nDU, [in] VARIANT_BOOL newVal);
+
+	[id(133), helpstring("method PopupWindow")]  
+		HRESULT PopupWindow(
+			[in] short nMonitor, 
+			[in] INT_PTR lChID, 
+			[in] INT_PTR lOwnerWnd,     // owner HWND, NULL means autocreate
+			[in] short nLeft, [in] short nTop, [in] short nRight, [in] short nBottom, // client for owner, screen for popup
+			[in] ULONG	dwStyles,	//default window styles
+			[out, retval] INT_PTR *lVideoWnd  // created HWND to return
+			);
+		[id(134), helpstring("method AlignOsd")] HRESULT AlignOsd(INT_PTR lOSDID, long lVert, long lHorz);
+		[propget, id(135), helpstring("property VideoScale")] HRESULT VideoScale(short nMonitor, [out, retval] long *pVal);
+		[propput, id(135), helpstring("property VideoScale")] HRESULT VideoScale(short nMonitor, [in] long newVal);
+		[id(136), helpstring("method GetVideoResolution")] HRESULT GetVideoResolution(INT_PTR lChID, long* width, long* height);
+		[id(137), helpstring("method GraphUnmap")] HRESULT GraphUnmap([in] INT_PTR lChID);
+
+		//start - added by YI
+		[id(138), helpstring("method SetOsdFontSize")] HRESULT SetOsdFontSize([in] INT_PTR lOSDID, [in] short iSize);
+		[id(139), helpstring("method GetOsdFontSize")] HRESULT GetOsdFontSize([in] INT_PTR lOSDID, [out, retval] short *iSize);
+		//end - added by YI
+
+//lMode is TN_TURN_DIRECTION enum
+	    [propget, id(140), helpstring("property ChannelFlip")] HRESULT ChannelFlip([in] INT_PTR lChID, [out, retval] long *lMode);
+		[propput, id(140), helpstring("property ChannelFlip")] HRESULT ChannelFlip([in] INT_PTR lChID, [in] long lMode);
+
+		[id(141), helpstring("method GetMapChannel")] HRESULT GetMapChannel([in] short nMonitor, [in] long nDU, [out, retval] INT_PTR *lChID);
+		[id(142), helpstring("method SetMapChannel")] HRESULT SetMapChannel([in] short nMonitor, [in] long nDU, [in] INT_PTR lChID);
+
+		[id(143), helpstring("method SetAudioDisplayPos")] HRESULT SetAudioDisplayPos([in] long lPos);
+		[id(144), helpstring("method SetAudioDisplayHwnd")] HRESULT SetAudioDisplayHwnd([in] INT_PTR lChID, [in] INT_PTR newVal);
+		//short nMonitor -  monitor number;
+		//VARIANT vDU    -  vDU->vt = VT_ARRAY | VT_VARIANT with du elements as VT_I4;
+		//VARIANT vRect  -  vDU->vt = VT_ARRAY | VT_VARIANT with rect elements as VT_I8 (left|top|right|bottom);
+		//VARIANT_BOOL bResult  -  VARIANT_TRUE if no error;
+		[id(145), helpstring("method SetDURect2")]         HRESULT SetDURect2([in] short nMonitor, [in] VARIANT vDU, [in] VARIANT vRect, [out, retval] VARIANT_BOOL *bResult);
+		
+		// Intra-Page implementation. 
+		// If the current layout can't hold all of the mapped cameras there will be Intra-Pages - special abstraction that allows to view all of the mapped cameras on this layout page by page.
+		[propget, id(146), helpstring("property CurrentIntraPage")] HRESULT CurrentIntraPage([in] short nMonitor, [out, retval] long *lIndex);
+		[propput, id(146), helpstring("property CurrentIntraPage")] HRESULT CurrentIntraPage([in] short nMonitor, [in] long lIndex);
+		[id(147), helpstring("method GetIntraPageCountMax")]         HRESULT GetIntraPageCountMax([in] short nMonitor, [out, retval] long *lCount);
+		// Checks is that DU visible
+		[id(148), helpstring("method IsDUVisible")]     HRESULT IsDUVisible([in] long lGlobalDUIndex, [in] long lIntraPage, [in] long lMaximizedDU, [in] long lDUsPerPage, [in] VARIANT_BOOL vtbArbitraryMode, [out, retval] VARIANT_BOOL *vtbVisible);
+  };
+
+///////////////////////////////////////////////////
+	[
+		object,
+		uuid(10998A2A-E955-4931-A9E4-83258B6E4BAC),
+		dual,
+		nonextensible,
+		helpstring("ITVSPlaybackControl Interface"),
+		pointer_default(unique)
+	]
+
+	interface ITVSPlaybackControl : IDispatch
+	{
+	//  Display 
+	//      use the same design as in Live SDK (ITVSDisplay interface);
+    [id(1001), helpstring("method GetDisplay")]			HRESULT GetDisplay([out, retval] ITVSDisplay** ppDisplay);
+
+	//Recorded status retrieval: dMonth.vt = VT_DATE ; returns days bitmask 
+	[id(1002), helpstring("method GetRecordedDays")] HRESULT GetRecordedDays([in] VARIANT dMonth, [out] LONG* bitDays, [in] BOOL bForce, [out, retval] VARIANT_BOOL *bResult); 
+
+	//Recorded status retrieval:   dDay.vt = VT_DATE ;   vvGlobalIDs->vt = VT_ARRAY | VT_VARIANT; returns VARIANTS with ChannelId as VT_I8 or VT_R8
+	[id(1003), helpstring("method GetRecordedChannels")]	HRESULT GetRecordedChannels([in] VARIANT dDay, [out] VARIANT* vvGlobalIDs, [out, retval] VARIANT_BOOL *bResult);
+
+	//		returns describe strings for channel. lVideoType, lAudioType are from TN_MTC_TYPE enum.
+	[id(1004), helpstring("method GetChannelInfo")]		HRESULT GetChannelInfo([in] VARIANT vGlobalId, [out] BSTR* sName, [out] BSTR* sServer, [out] long* lVideoType, [out] long* lAudioType, [out, retval] VARIANT_BOOL* bResult);
+
+	//		returns VARIANTS containing record map for the specified day and channel. dDay.vt = VT_DATE ; vvTimeline->vt = VT_ARRAY | VT_VARIANT; returns VARIANTS with times as VT_DATE
+	//		a sequence of 5 VARIANTS forms TIMELINE_REC_v4 structure. The sequence is: event_source, event_id, time_oldest, time_latest, data_size
+	[id(1005), helpstring("method GetTimelineData")]		HRESULT GetTimelineData([in] VARIANT vGlobalId, [in] VARIANT dDay, [out, retval] VARIANT* vvTimeline);
+
+	//      get recorded duration total/per disk (as a value); pPath is drive letter or NULL (gather all drives). pvBegin->vt = pvEnd->vt = VT_DATE;
+	[id(1006), helpstring("method GetRecordDuration")]		HRESULT GetRecordDuration([out] VARIANT *pvBegin, [out] VARIANT *pvEnd, [out, retval] VARIANT_BOOL *bResult);
+
+	//  Event search
+	//		returns arrays VARIANTS containing event ids (long)
+	//		for the specified server id (0 for ALL), time interval and event mask (for lEventMask, see TN_PB_EVENT_TYPE)
+	//                                                                                                  vBegin.vt = vEnd.vt = VT_DATE; returns number of events found. max is limited by cEventRequired. Next call rebuilds the list
+	[id(1007), helpstring("method GetEventList")]			HRESULT GetEventList([in] VARIANT vGlobalId, [in] VARIANT vBegin, [in] VARIANT vEnd, [in] long lEventMask, [in] long cEventRequired, [out, retval] long* cEventFound);
+
+	//		returns description for event by id                             // lNumber = [0,cEventFound]           dTime->vt = VT_DATE;
+	[id(1008), helpstring("method GetEventInfo")]			HRESULT GetEventInfo([in] long lNumber, [out] long* lMask, [out] VARIANT* dTime, [out] VARIANT* vvGlobalIDs, [out] long* lParam, [out, retval] VARIANT_BOOL* bRes);
+
+	//  Channels opening/closing
+	//      long id for each channel identifying;
+	[id(1009), helpstring("method OpenChannel")]			HRESULT OpenChannel([in] VARIANT vGlobalId, [out, retval] INT_PTR* lChID);
+	[id(1010), helpstring("method CloseChannel")]			HRESULT CloseChannel([in] INT_PTR lChID, [out, retval] VARIANT_BOOL* bRes);
+
+
+	//  Playback control
+	//		for lSpeed, see TN_PB_SPEED enum
+	[id(1011), helpstring("method Play")]					HRESULT Play([in] long lSpeed, [out, retval] VARIANT_BOOL* bRes);
+	[id(1012), helpstring("method Pause")]				HRESULT Pause([out, retval] VARIANT_BOOL* bRes);
+	[id(1013), helpstring("method Stop")]					HRESULT Stop([out, retval] VARIANT_BOOL* bRes);
+	//		lStep - count of frames to step (+/- forward/backward)
+	[id(1014), helpstring("method Step")]					HRESULT Step([in] long lStep, [out, retval] VARIANT_BOOL* bRes);
+
+	// Time navigation;
+	//      set or get start time position in storage for playing; dTime->vt = VT_DATE;
+	[propput, id(1015), helpstring("property CurrentTime")]	HRESULT CurrentTime([in] VARIANT dTime);
+	[propget, id(1015), helpstring("property CurrentTime")]	HRESULT CurrentTime([out, retval] VARIANT* dTime);
+
+	//  Backup/export (AVI/JPEG)
+	//      AVI backup 
+	//	lFlags		0: Video only / no smi
+    //				1: Video+audio / no smi
+    //				2: Video only / smi
+    //				3: Video+audio / smi
+	[id(1016), helpstring("method StartAVIBackup")]		HRESULT StartAVIBackup([in] VARIANT vGlobalId, [in] long lFlags, [in] BSTR sPath, [in] VARIANT vBegin, [in] VARIANT vEnd, [out] long* lDuration, [out] VARIANT* vSize, [out, retval] VARIANT_BOOL* bRes);
+	[id(1017), helpstring("method StopAVIBackup")]		HRESULT StopAVIBackup([in] VARIANT vGlobalId, [out, retval] VARIANT_BOOL* bRes);
+	//      JPEG/BMP export 
+	//		for lCompression, see TN_PB_COMPRESSION_TYPE enum
+	[id(1018), helpstring("method PictureExport")]		HRESULT PictureExport([in] INT_PTR lChID, [in] BSTR sPath, [in] long lCompression, [out, retval] VARIANT_BOOL* bRes);
+
+  /// Activate/Deactivate audio                   //VARIANT_TRUE: Audio Off (Default), VARIANT_FALSE: Audio On
+    [id(1019), helpstring("method SetMute")]                HRESULT SetMute([in] INT_PTR lChID, [in] VARIANT_BOOL bMute);
+    [id(1020), helpstring("method GetMute")]                HRESULT GetMute([in] INT_PTR lChID, [out, retval] VARIANT_BOOL *bMuted);
+
+	//Optional. Decoder options.										[in] long param see from TN_DEC_OPTION
+    [propget, id(1021), helpstring("property DecodingOption")]          HRESULT DecodingOption([in] long param, [out, retval] long *value);
+    [propput, id(1021), helpstring("property DecodingOption")]          HRESULT DecodingOption([in] long param, [in] long value);
+	[id(1022), helpstring("method Connect")] HRESULT Connect(BSTR bsAddr, long lPort, BSTR bsLogin, BSTR bsPass);
+	[propget, id(1023), helpstring("property Config")] HRESULT Config(long eItem, [out, retval] VARIANT *pVal);
+	[propput, id(1023), helpstring("property Config")] HRESULT Config(long eItem, [in] VARIANT newVal);
+	[propget, id(1024), helpstring("property LocalConfig")] HRESULT LocalConfig(long eItem, [out, retval] VARIANT *pVal);
+	[propput, id(1024), helpstring("property LocalConfig")] HRESULT LocalConfig(long eItem, [in] VARIANT newVal);
+	[id(1025), helpstring("method Disconnect")] HRESULT Disconnect();
+    [id(1026), helpstring("method Snapshot")] HRESULT Snapshot([in] INT_PTR lChID, [in] long lCompression, [in] VARIANT_BOOL bAutoSave);
+    [id(1027), helpstring("method PreviewSnapshot")] HRESULT PreviewSnapshot([in] INT_PTR lChID); // to resume, Play should be called.
+    [id(1028), helpstring("method SaveSnapshot")] HRESULT SaveSnapshot([in] INT_PTR lChID, [in] long lCompression, [in] BSTR pFilename);
+	[id(1029), helpstring("method GetSnapshot")] HRESULT GetSnapshot([in] INT_PTR lChID, [in] long lCompression/*0: BMP, 1-100: JPEG compression rate*/, [in] long xWidth/*0: original resolution*/, [in] long yHeight/*0: original resolution*/, [out] VARIANT* data, [out] long* size);
+    [id(1030), helpstring("method SetOsdRectangle")]                    HRESULT SetOsdRectangle(INT_PTR lChID, long lColor, long lWidth, long lOffset);
+    [id(1031), helpstring("method RemoveOsdRectangle")]                 HRESULT RemoveOsdRectangle(INT_PTR lChID);
+    [propget, id(1032), helpstring("property KeepAspectRatio")]     HRESULT KeepAspectRatio([in] INT_PTR lChID, [out, retval] VARIANT_BOOL *bAspect);
+    [propput, id(1032), helpstring("property KeepAspectRatio")]     HRESULT KeepAspectRatio([in] INT_PTR lChID, [in] VARIANT_BOOL bAspect);
+	[id(1033), helpstring("method GetChannelDuration")]                 HRESULT GetChannelDuration([in] VARIANT vGlobalId,[in]  VARIANT vBegin,[in] VARIANT vEnd, [out] long *value);
+	[id(1034), helpstring("method SetBackupSpeed")]                 HRESULT SetBackupSpeed([in] long value);
+	[id(1035), helpstring("method GetAVIEstimatedSize")]			HRESULT GetAVIEstimatedSize([in] VARIANT vGlobalId, [in] long lFlags, [in] BSTR sPath, [in] VARIANT vBegin, [in] VARIANT vEnd, [out] long* lDuration, [out] VARIANT* vSize, [out, retval] VARIANT_BOOL* bRes);
+	[id(1036), helpstring("method SetAVIFileInfo")]					HRESULT SetAVIFileInfo([in] INT_PTR ChnlID, [in] BSTR pInfo);
+	//      Native backup 
+	//	lFlags		0: Video only / no smi
+    //				1: Video+audio / no smi
+    //				2: Video only / smi
+    //				3: Video+audio / smi
+	[id(1037), helpstring("method StartNativeBackup")]		HRESULT StartNativeBackup([in] VARIANT vGlobalId, [in] long lFlags, [in] BSTR sPath, [in] VARIANT vBegin, [in] VARIANT vEnd, [out] long* lDuration, [out] VARIANT* vSize, [out, retval] VARIANT_BOOL* bRes);
+	[id(1038), helpstring("method StopNativeBackup")]		HRESULT StopNativeBackup([in] VARIANT vGlobalId, [out, retval] VARIANT_BOOL* bRes);
+	[id(1039), helpstring("method GetNativeEstimatedSize")]	HRESULT GetNativeEstimatedSize([in] VARIANT vGlobalId, [in] long lFlags, [in] BSTR sPath, [in] VARIANT vBegin, [in] VARIANT vEnd, [out] VARIANT* vSize, [out, retval] VARIANT_BOOL* bRes);
+	// for lParam, see TN_PB_EX_STORAGE_TYPE enum
+	[id(1040), helpstring("method OpenExternalStorage")]	HRESULT OpenExternalStorage([in] BSTR sPath, [in] LPARAM lParam, [out, retval] VARIANT_BOOL* bRes);
+	[id(1041), helpstring("method CloseExternalStorage")]	HRESULT CloseExternalStorage([out, retval] VARIANT_BOOL* bRes);
+
+	[id(1042), helpstring("method IsDisplayInitialized")]	HRESULT IsDisplayInitialized();
+	//Recorded status retrieval for all duration:   dStartDate.vt = VT_DATE ; dStopDate.vt = VT_DATE ;   vvGlobalIDs->vt = VT_ARRAY | VT_VARIANT; returns VARIANTS with ChannelId as VT_I8 or VT_R8
+	[id(1043), helpstring("method GetRecordedChannelsForDuration")]	HRESULT GetRecordedChannelsForDuration([in] VARIANT dStartDate, [in] VARIANT dStopDate, [out] VARIANT *vvGlobalIDs, [out, retval] VARIANT_BOOL *bResult);
+
+	[id(1044), helpstring("method OpenChannelWithAddress")]		HRESULT OpenChannelWithAddress([in] BSTR bsAddr, [in] long lPort, [out, retval] INT_PTR* lChID);
+	[id(1045), helpstring("method FindChannelByAddress")]		HRESULT FindChannelByAddress([in] BSTR bsAddr, [in] long lPort, [out, retval] LONGLONG* llChID);
+	[id(1046), helpstring("method SetCurrentTime")]					HRESULT SetCurrentTime([in] VARIANT year, [in] VARIANT month, [in] VARIANT day, [in] VARIANT hour, [in] VARIANT minute, [in] VARIANT second);
+	[id(1047), helpstring("method GetRecordedChannels2")]			HRESULT GetRecordedChannels2([in] VARIANT year, [in] VARIANT month, [in] VARIANT day, [out] VARIANT* vvGlobalIDs, [out, retval] VARIANT_BOOL *bResult);
+	[id(1048), helpstring("method ShowPlaybackTime")]				HRESULT ShowPlaybackTime([in] VARIANT show, [out, retval] VARIANT_BOOL *bResult);
+
+	[id(1049), helpstring("method SetDecoder")]HRESULT SetDecoder([in] DWORD decoder);
+	[id(1050), helpstring("method GetDecoder")]HRESULT GetDecoder([out, retval] DWORD* decoder);
+	[id(1051), helpstring("method GetAvailableDecoders")]HRESULT GetAvailableDecoders([out, retval] DWORD* decoders);
+
+	[id(1052), helpstring("method LoadNetworkDrives")]HRESULT LoadNetworkDrives([in] BSTR szConfig);
+
+	[id(1053), helpstring("method GetDecodingTime")]HRESULT GetDecodingTime([in] INT_PTR lChID, [out, retval] VARIANT* dTime);
+	[id(1054), helpstring("method GetMaxGopSize")]HRESULT GetMaxGopSize([in] INT_PTR lChID, [out, retval] int* size);
+
+	[id(1055), helpstring("method PlayIFrame")]HRESULT PlayIFrame([in] VARIANT dTime);
+	[id(1058), helpstring("method StopIFramePlayback")]HRESULT StopIFramePlayback();
+
+	// return DESC_CHANNEL oldest/latast times
+	// vGlobalId.vt = VT_ARRAY | VT_VARIANT
+	// returns vvTimes->vt = VT_ARRAY | VT_VARIANT with a sequence of 3 VARIANTS (chnl_id:VT_I8, time_oldest:VT_DATE, time_latest:VT_DATE)
+	[id(1056), helpstring("method GetChnlDescOldestLatestTime")]HRESULT GetChnlDescOldestLatestTime([in] VARIANT vGlobalId, [in] VARIANT dDay, [out] VARIANT* vvTimes, [out, retval] VARIANT_BOOL* bRes);
+
+	// need to call before put_CurrentTime/SetCurrentTime to improve the positioning accuracy.
+	// vDirection.vt = VT_I4
+	// vDirection.lVal	0: backward playback
+	//					1: forward playback (default)
+	[id(1057), helpstring("method PutCurrentTimeDirection")]HRESULT PutCurrentTimeDirection([in] VARIANT vDirection,  [out, retval] VARIANT_BOOL* bRes);
+
+	//next free id is 1059
+	};
+
+///////////////////////////////////////////////////
+	[
+		object,
+		uuid(2F88F0C6-1126-4b65-ABBC-A5AE99AC5A43),
+		dual,
+		helpstring("ITVSIVSControl Interface"),
+		pointer_default(unique)
+	]
+	interface ITVSIVSControl : IDispatch
+	{
+	// 1. IVS Area/Line Configuration API. These functions are only for cameras.
+	
+		// Reset Line counter for that camera
+		// Params:
+		// [in] INT_PTR lChnlID - Target Channel ID
+		[id(2101), helpstring("method ResetLineCounter")] HRESULT ResetLineCounter([in] INT_PTR lChnlID);
+
+		// Force camera's detectors to relearn background
+		// Params:
+		// [in] INT_PTR lChnlID - Target Channel ID
+		[id(2102), helpstring("method RelearnBackground")] HRESULT RelearnBackground([in] INT_PTR lChnlID);
+
+	// 2. Cell Edit API. These functions DON'T send any data to camera. That API represents graphical editor for areas.
+
+		// Start area editor
+		// Params:
+		// [in] INT_PTR lChnlID - Target Channel ID
+		[id(2201), helpstring("method StartCellEdit")] HRESULT StartCellEdit([in] INT_PTR lChnlID);
+
+		// Set area editing mode (use cell for area or remove cell from area)
+		// Params:
+		// [in] INT_PTR lChnlID - Target Channel ID
+		// [in] BOOL bMode - TRUE - Set mode, FALSE - Erase mode
+		[id(2202), helpstring("method SetCellEditMode")] HRESULT SetCellEditMode([in] INT_PTR lChnlID, [in] BOOL bMode);
+		
+		// Get current area editing mode (use cell for area or remove cell from area)
+		// Params:
+		// [in] INT_PTR lChnlID - Target Channel ID
+		// [out] BOOL *pbMode - TRUE - Set mode, FALSE - Erase mode
+		[id(2203), helpstring("method GetCellEditMode")] HRESULT GetCellEditMode([in] INT_PTR lChnlID, [out] BOOL *pbMode);
+
+		// Set area editing UI color scheme
+		// Params:
+		// [in] INT_PTR lChnlID - Target Channel ID
+		// [in] DWORD clrGrid - grid color
+		// [in] DWORD clrCell - used cell color
+		[id(2204), helpstring("method SetCellEditColor")] HRESULT SetCellEditColor([in] INT_PTR lChnlID, [in] DWORD clrGrid, [in] DWORD clrCell);
+
+		// Get area editing UI color scheme
+		// Params:
+		// [in] INT_PTR lChnlID - Target Channel ID
+		// [out] DWORD *pclrGrid - grid color
+		// [out] DWORD *pclrCell - used cell color
+		[id(2205), helpstring("method GetCellEditColor")] HRESULT GetCellEditColor([in] INT_PTR lChnlID, [out] DWORD *pclrGrid, [out] DWORD *pclrCell);
+
+		// Set grid dimentions for area editor
+		// Params:
+		// [in] INT_PTR lChnlID - Target Channel ID
+		// [in] DWORD dwColumnsCount - columns count
+		// [in] DWORD dwRowsCount - rows count
+		[id(2206), helpstring("method SetCellCount")] HRESULT SetCellCount([in] INT_PTR lChnlID, [in] DWORD dwRowsCount, [in] DWORD dwColumnsCount);
+
+		// Get grid dimentions for area editor
+		// Params:
+		// [in] INT_PTR lChnlID - Target Channel ID
+		// [out] DWORD *pdwColumnsCount - columns count
+		// [out] DWORD *pdwRowsCount - rows count
+		[id(2207), helpstring("method GetCellCount")] HRESULT GetCellCount([in] INT_PTR lChnlID, [out] DWORD *pdwRowsCount, [out] DWORD *pdwColumnsCount);
+
+		// Set area data
+		// Params:
+		// [in] INT_PTR lChnlID - Target Channel ID
+		// [in] DWORD dwColumnsCount - columns count
+		// [in] DWORD dwRowsCount - rows count
+		// [in] VARIANT vtarrbtAreaData - array of Bytes (BYTE) with data, each bit defines is that cell occupied by area or not. Size is dwWidthCellCount * dwHeightCellCount / 8 + (dwWidthCellCount * dwHeightCellCount % 8) ? 1 : 0
+		[id(2208), helpstring("method SetCellData")] HRESULT SetCellData([in] INT_PTR lChnlID, [in] DWORD dwRowsCount, [in] DWORD dwColumnsCount, [in] VARIANT vtarrbtAreaData);
+
+		// Get area data
+		// Params:
+		// [in] INT_PTR lChnlID - Target Channel ID
+		// [out] DWORD *pdwColumnsCount - columns count
+		// [out] DWORD *pdwRowsCount - rows count
+		// [out] VARIANT *pvtarrbtAreaData - array of Bytes (BYTE) with data, each bit defines is that cell occupied by area or not. Size is dwWidthCellCount * dwHeightCellCount / 8 + (dwWidthCellCount * dwHeightCellCount % 8) ? 1 : 0
+		[id(2209), helpstring("method GetCellData")] HRESULT GetCellData([in] INT_PTR lChnlID, [out] DWORD *pdwRowsCount, [out] DWORD *pdwColumnsCount, [out] VARIANT *pvtarrbtAreaData);
+
+		// Closes area editor
+		// Params:
+		// [in] INT_PTR lChnlID - Target Channel ID
+		[id(2210), helpstring("method StopCellEdit")] HRESULT StopCellEdit([in] INT_PTR lChnlID);
+		[id(2211), helpstring("method SetCellData2")] HRESULT SetCellData2([in] INT_PTR lChnlID, [in] DWORD dwRowsCount, [in] DWORD dwColumnsCount, [in] BSTR bsAreaData);
+		[id(2212), helpstring("method GetCellData2")] HRESULT GetCellData2([in] INT_PTR lChnlID, [out, retval] VARIANT *pvtarrbtAreaData);
+
+	// 3. Line edit API. Similar to Area edit API, doesn't send anything to camera.
+
+		// Start line editor
+		// Params:
+		// [in] INT_PTR lChnlID - Target Channel ID
+		[id(2301), helpstring("method StartLineEdit")] HRESULT StartLineEdit([in] INT_PTR lChnlID);
+
+		// Set line color for editor
+		// Params:
+		// [in] INT_PTR lChnlID - Target Channel ID
+		// [in] DWORD clrLine - line color
+		[id(2302), helpstring("method SetLineEditColor")] HRESULT SetLineEditColor([in] INT_PTR lChnlID, [in] DWORD clrLine);
+
+		// Get line color for editor
+		// Params:
+		// [in] INT_PTR lChnlID - Target Channel ID
+		// [out] DWORD *pclrLine - line color
+		[id(2303), helpstring("method GetLineEditColor")] HRESULT GetLineEditColor([in] INT_PTR lChnlID, [out] DWORD *pclrLine);
+
+		// Set usage of direction for line crossing
+		// Params:
+		// [in] INT_PTR lChnlID - Target Channel ID
+		// [in] BOOL bUseDirection - show the arrow for direction or not
+		[id(2304), helpstring("method SetLineEditEntryDirection")] HRESULT SetLineEditEntryDirection([in] INT_PTR lChnlID, [in] BOOL bUseDirection);
+
+		// Get usage of direction for line crossing
+		// Params:
+		// [in] INT_PTR lChnlID - Target Channel ID
+		// [out] BOOL *pbUseDirection - show the arrow for direction or not
+		[id(2305), helpstring("method GetLineEditEntryDirection")] HRESULT GetLineEditEntryDirection([in] INT_PTR lChnlID, [out] BOOL *pbUseDirection);
+
+		// Set Line data
+		// Params:
+		// [in] INT_PTR lChnlID - Target Channel ID
+		// [in] DWORD dwPointCount - number of points in that line; At current stage there can be only 2 points.
+		// [in] VARIANT vtarrptLineData - array of point coordinates (X1, Y1, X2, Y2 etc), each one must be unsigned int (4 bytes), size is dwPointCount * 2
+		[id(2306), helpstring("method SetLineData")] HRESULT SetLineData([in] INT_PTR lChnlID, [in] DWORD dwPointCount, [in] VARIANT vtarrptLineData);
+
+		// Get Line data
+		// Params:
+		// [in] INT_PTR lChnlID - Target Channel ID
+		// [out] DWORD *pdwPointCount - number of points in that line; At current stage there can be only 2 points.
+		// [out] VARIANT *pvtarrptLineData - array of point coordinates (X1, Y1, X2, Y2 etc), each one must be unsigned int (4 bytes), size is dwPointCount * 2
+		[id(2307), helpstring("method GetLineData")] HRESULT GetLineData([in] INT_PTR lChnlID, [out] DWORD *pdwPointCount, [out] VARIANT *pvtarrptLineData);
+
+		// Closes line editor
+		// Params:
+		// [in] INT_PTR lChnlID - Target Channel ID
+		[id(2308), helpstring("method StopLineEdit")] HRESULT StopLineEdit([in] INT_PTR lChnlID);
+		[id(2309), helpstring("method SetLineData2")] HRESULT SetLineData2([in] INT_PTR lChnlID, [in] long lStartX, [in] long lStartY, [in] long lEndX, [in] long lEndY);
+		[id(2310), helpstring("method GetLineData2")] HRESULT GetLineData2([in] INT_PTR lChnlID, [in] long type, [out, retval] long *lValue);
+
+	// 4. Display API. These functions are used to rule and display objects related to IVS (lines, areas, detected objecs)
+
+		// Start to display areas
+		// Params:
+		// [in] INT_PTR lChnlID - Target Channel ID
+		// [in] BOOL bShowGrid - Show grid
+		// [in] DWORD clrGrid - Grid color 0xAARRGGBB
+		// [in] DWORD dwRowsCount, DWORD dwColumnsCount - Grid dimentions
+		[id(2401), helpstring("method StartAreaDisplay")] HRESULT StartAreaDisplay([in] INT_PTR lChnlID, [in] BOOL bShowGrid, [in] DWORD clrGrid, [in] DWORD dwRowsCount, [in] DWORD dwColumnsCount);
+
+		// Add area to display
+		// Params:
+		// [in] INT_PTR lChnlID - Target Channel ID
+		// [in] DWORD clrArea - Color for area 0xAARRGGBB
+		// [in] DWORD dwRowsCount, DWORD dwColumnsCount - grid size in which that area is defined
+		// [in] VARIANT vtarrbtAreaData - array of Bytes (BYTE) with data, each bit defines is that cell occupied by area or not. Size is dwWidthCellCount * dwHeightCellCount / 8 + (dwWidthCellCount * dwHeightCellCount % 8) ? 1 : 0
+		// [out, retval] LONG *plAreaID - object ID. doesn't intersect with object ID for lines.
+		[id(2402), helpstring("method AddAreaDisplay")] HRESULT AddAreaDisplay([in] INT_PTR lChnlID, [in] DWORD clrArea, [in] DWORD dwRowsCount, [in] DWORD dwColumnsCount, [in] VARIANT vtarrbtAreaData, [out, retval] LONG *plAreaID);
+
+		// Remove area from displaying
+		// Params:
+		// [in] INT_PTR lChnlID - Target Channel ID
+		// [in] LONG lAreaID - object ID
+		[id(2403), helpstring("method RemoveAreaDisplay")] HRESULT RemoveAreaDisplay([in] INT_PTR lChnlID, [in] LONG lAreaID);
+
+		// Stop areas displaying
+		// Params:
+		// [in] INT_PTR lChnlID - Target Channel ID
+		[id(2404), helpstring("method StopAreaDisplay")] HRESULT StopAreaDisplay([in] INT_PTR lChnlID);
+
+		// Start lines displaying
+		// Params:
+		// [in] INT_PTR lChnlID - Target Channel ID
+		[id(2405), helpstring("method StartLineDisplay")] HRESULT StartLineDisplay([in] INT_PTR lChnlID);
+
+		// Add line to display
+		// Params:
+		// [in] INT_PTR lChnlID - Target Channel ID
+		// [in] DWORD clrLine - Color for line 0xAARRGGBB
+		// [in] float fThickness - thickness of line
+		// [in] DWORD dwUseDirection - draw direction or not
+		// [in] DWORD dwPointCount - number of points in that line; At current stage there can be only 2 points.
+		// [in] VARIANT vtarrptLineData - array of point coordinates (X1, Y1, X2, Y2 etc), each one must be int (4 bytes), size is dwPointCount * 2
+		// [out, retval] LONG *plLineID - object ID. doesn't intersect with object ID for areas.
+		[id(2406), helpstring("method AddLineDisplay")] HRESULT AddLineDisplay([in] INT_PTR lChnlID, [in] DWORD clrLine, [in] float fThickness, [in] DWORD dwUseDirection, [in] DWORD dwPointCount, [in] VARIANT vtarrptLineData, [out, retval] LONG *plLineID);
+		
+		// Remove line from displaying
+		// Params:
+		// [in] INT_PTR lChnlID - Target Channel ID
+		// [in] LONG lLineID - object ID
+		[id(2407), helpstring("method RemoveLineDisplay")] HRESULT RemoveLineDisplay([in] INT_PTR lChnlID, [in] LONG lLineID);
+
+		// Stop lines displaying
+		// Params:
+		// [in] INT_PTR lChnlID - Target Channel ID
+		[id(2408), helpstring("method StopLineDisplay")] HRESULT StopLineDisplay([in] INT_PTR lChnlID);
+
+		// Start IVS detected objects displaying
+		// Params:
+		// [in] INT_PTR lChnlID - Target Channel ID
+		// [in] DWORD dwObjectMode - mask of IVS_DETECTED_OBJECT_MODES. defines object types to display.
+		// [in] DWORD clrObject - color for bounding box of usual detected objects 0xAARRGGBB
+		// [in] DWORD clrDetectedObject - color for bounding box of detected object triggered an event 0xAARRGGBB
+		// [in] BOOL bDrawTrail - draw trail or not
+		// [in] DWORD clrTrail - color for trail 0xAARRGGBB
+		[id(2409), helpstring("method StartIVSObjectDisplay")] HRESULT StartIVSObjectDisplay([in] INT_PTR lChnlID, [in] DWORD dwObjectMode, [in] DWORD clrObject, [in] DWORD clrDetectedObject, [in] BOOL bDrawTrail, [in] DWORD clrTrail);
+
+		// Stop IVS detected objects displaying
+		// Params:
+		// [in] INT_PTR lChnlID - Target Channel ID
+		[id(2410), helpstring("method StopIVSObjectDisplay")] HRESULT StopIVSObjectDisplay([in] INT_PTR lChnlID);
+
+		// Start IVS counter display
+		// Params:
+		// [in] INT_PTR lChnlID - Target Channel ID
+		// [in] DWORD dwFontSize - font size for counter
+		// [in] DWORD clrFont - font color 0xAARRGGBB
+		// [in] DWORD dwPosition - position for counter mask of TN_DISPLAY_POSITION
+		[id(2411), helpstring("method StartIVSCounterDisplay")] HRESULT StartIVSCounterDisplay([in] INT_PTR lChnlID, [in] DWORD dwFontSize, [in] DWORD clrFont, [in] DWORD dwPosition);
+
+		// StopIVSCounterDisplay
+		// Params:
+		// [in] INT_PTR lChnlID - Target Channel ID
+		[id(2412), helpstring("method StopIVSCounterDisplay")] HRESULT StopIVSCounterDisplay([in] INT_PTR lChnlID);
+
+		// Set grid thickness
+		// Params:
+		// [in] INT_PTR lChnlID - Target Channel ID
+		// [in] float fThickness - thickness of the grid lines (0..100)
+		[id(2413), helpstring("method SetCellEditWidth")] HRESULT SetCellEditWidth([in]INT_PTR lChnlID, [in]float fThickness);
+
+		// Set line thickness
+		// Params:
+		// [in] INT_PTR lChnlID - Target Channel ID
+		// [in] float fThickness - thickness of the line (0..100)
+		[id(2414), helpstring("method SetLineEditWidth")] HRESULT SetLineEditWidth([in]INT_PTR lChnlID, [in]float fThickness);
+
+	}
+///////////////////////////////////////////////////
+
+
+[
+  //uuid(E0AEF027-8849-4A4F-BB93-3F6A2BD9820D),
+  uuid(TVSLib_GUID),
+  version(1.0),
+  helpstring("TVS 1.0 Type Library")
+]
+library TVSLib
+{
+  importlib("stdole32.tlb");
+  importlib("stdole2.tlb");
+
+  [
+    uuid(C3555312-A0C9-449C-A4CD-83C515F65DFB),
+    helpstring("_ITVSLiveControlEvents Interface")
+  ]
+  dispinterface _ITVSLiveControlEvents
+  {
+    properties:
+    methods:
+                                              //eNewState, see TN_CS_TYPE; eReason, see TN_SNC_TYPE
+    [id(1), helpstring("method OnChannelNotify")] void OnChannelNotify([in] INT_PTR lChID, [in] long eNewState, [in] long eReason);
+    [id(2), helpstring("method OnStreamData")] void OnStreamData([in] INT_PTR lChID, [in] VARIANT vData);
+    [id(3), helpstring("method OnMouseEvent")] void OnMouseEvent([in] INT_PTR lChID, [in] long lMsg, [in] WPARAM wParam, [in] LPARAM lParam);
+                                                //eEventType, see TN_ET_TYPE      eEventStatus, see TN_ES_STATUS
+    [id(4), helpstring("method OnServerEvent")] void OnServerEvent([in] INT_PTR lChID, [in] long eEventType, [in] short nIndex, [in] long eEventStatus, [in] VARIANT vData);
+    [id(5), helpstring("method OnSerialData")] void OnSerialData([in] INT_PTR lChID, [in] short nIndex, [in] VARIANT vData);
+    [id(6), helpstring("method OnSystemNotify")] void OnSystemNotify(long lNotifyCode, VARIANT vData);
+
+																	//lNotifyCode, see TN_RECORD_NOTIFY
+    [id(7), helpstring("method OnRecordNotify")] void OnRecordNotify(long lNotifyCode, [in] INT_PTR lChID, VARIANT vData);
+	[id(8), helpstring("method OnWaveNotify")] void OnWaveNotify([in] INT_PTR lChID, [in] long lState);
+    //INT_PTR lChID       -  Channel ID obtained by Connect
+    //BSTR sPath       -  File path
+    //VARIANT tCurrent -  Time has been recorded
+    //long lDuration   -  File duration recorded so far (in seconds)
+    //VARIANT vllSaved -  File size recorded so far (in bytes, VT_UI8)
+    //HRESULT hrError  -  Error in HRESULT format or 0=NOERROR if progress
+	[id(9), helpstring("method OnFileRecordNotify")] void OnFileRecordNotify([in] INT_PTR lChID, [in] BSTR sPath, [in] VARIANT tCurrent, [in] long lDuration, [in] VARIANT vllSaved,  HRESULT hrError);
+	// INT_PTR lChID		- Channel ID obtained by Connect
+	// long lEvent		- One of TN_FILERECORD_IOCTLEVENT
+	// BSTR bsFilePath	- File path
+	[id(10), helpstring("method OnFileRecordIoctlNotify")] void OnFileRecordIoctlNotify( [in] INT_PTR lChID, [in] long lEvent, [in] BSTR bsFilePath );
+  };
+
+  [
+    //uuid(575A6BF1-1460-4907-9157-BECB7DCAC655),
+	uuid(TVSLiveControl_GUID),
+    helpstring("TVSLiveControl Class")
+  ]
+  coclass TVSLiveControl
+  {
+    [default] interface ITVSLiveControl;
+    [default, source] dispinterface _ITVSLiveControlEvents;
+	};
+	[
+		uuid(0530937B-3487-4FC1-9030-9ABB6CFA53BA),
+		helpstring("_ITVSPlaybackControlEvents Interface")
+	]
+	dispinterface _ITVSPlaybackControlEvents
+	{
+		properties:
+		methods:
+
+		//  Playback notifies event handler
+		//	for lNotifyCode, see TN_PB_NOTIFY_CODES
+		//	lValue based on the lNotifyCode:
+		//		if TN_PB_NOTIFY_ERROR - error code, 
+		//		if TN_PB_NOTIFY_ENDOFDATA - nothing, 
+		//		if TN_PB_NOTIFY_STATECHANGED - new state value from TN_PB_STATES
+		//		if TN_PB_NOTIFY_PLAYBACKTIME - playback time progress, 
+		[id(1), helpstring("method OnPlaybackNotify")] void OnPlaybackNotify([in] VARIANT lChID, [in] long lNotifyCode, [in] VARIANT lValue, [in] VARIANT vTime);
+
+		//  Avi backup progress event handler                                                                                   //tCurrent.vt = VT_DATE                      vllSaved.vt = vllTotal.vt = VT_I4 or VT_I8
+		//	vllSaved - current size of saved avi file
+		//	lDuration - current duration of saved avi file
+		//	tCurrent - current save time (between vBegin and vEnd from StartAviBackup)
+		[id(2), helpstring("method OnAVIBackupProgress")] void OnAVIBackupProgress([in] VARIANT vGlobalId, [in] BSTR sPath, [in] VARIANT tCurrent, [in] long lDuration, [in] VARIANT vllSaved);
+		[id(3), helpstring("method OnMouseEvent")] void OnMouseEvent([in] INT_PTR lChID, [in] long lMsg, [in] WPARAM wParam, [in] LPARAM lParam);
+		[id(4), helpstring("method OnRemoteNotify")] void OnRemoteNotify([in] long lMsg, [in] WPARAM wParam, [in] LPARAM lParam);
+		[id(5), helpstring("method OnAVIBackupNotify")] void OnAVIBackupNotify([in]VARIANT vGlobalId, [in]long lNotifyCode);
+		[id(6), helpstring("method OnNativeBackupProgress")] void OnNativeBackupProgress([in] VARIANT vGlobalId, [in] BSTR sPath, [in] VARIANT tCurrent, [in] long lDuration, [in] VARIANT vllSaved);
+		[id(7), helpstring("method OnNativeBackupNotify")] void OnNativeBackupNotify([in] BSTR sPath, [in]long lNotifyCode);
+		[id(8), helpstring("method OnRemoteDrivesChangedNotify")] void OnRemoteDrivesChangedNotify([in] long bAdded, [in] WPARAM wParam);
+	};
+	[
+		//uuid(6E1B300A-119E-461D-9653-D6CBEF00B3E5),
+		uuid(TVSPlaybackControl_GUID),
+		control,
+		helpstring("TVSPlaybackControl Class")
+	]
+	coclass TVSPlaybackControl
+	{
+		[default] interface ITVSPlaybackControl;
+//		interface ITVSPlaybackControl2;
+		[default, source] dispinterface _ITVSPlaybackControlEvents;
+	};
+
+	[
+		uuid(770BD7DB-5024-4c28-9BBA-520B284EF508),
+		helpstring("_ITVSDecodeControlEvents Interface")
+	]
+	dispinterface _ITVSDecodeControlEvents
+  {
+    properties:
+    methods:
+    [id(1), helpstring("method OnDataEvent")]		void OnDataEvent([in] INT_PTR lChID, [in] VARIANT vData, [in] long lError);
+    [id(2), helpstring("method OnMouseEvent")]		void OnMouseEvent([in] INT_PTR lChID, [in] long lMsg, [in] WPARAM wParam, [in] LPARAM lParam);
+  };
+	[
+		//uuid(CA1B836A-156F-40bd-A2F5-F7AABEFAD692),
+		uuid(TVSDecodeControl_GUID),
+		control,
+		helpstring("TVSDecodeControl Class")
+	]
+	coclass TVSDecodeControl
+	{
+		[default] interface ITVSDecodeControl;
+		[default, source] dispinterface _ITVSDecodeControlEvents;
+	};
+
+};
+
+

@@ -1,0 +1,766 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Korean resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+LANGUAGE LANG_KOREAN, SUBLANG_NEUTRAL
+#pragma code_page(949)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DIALOG_STATUS_COORD DIALOGEX 0, 0, 664, 179
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_BORDER
+FONT 8, "MS Shell Dlg", 400, 0, 0x81
+BEGIN
+    CTEXT           "",IDC_STATIC_DMS,15,31,195,12,SS_CENTERIMAGE,WS_EX_STATICEDGE
+    CTEXT           "",IDC_STATIC_MGRS,15,43,195,12,SS_CENTERIMAGE,WS_EX_STATICEDGE
+    CTEXT           "",IDC_STATIC_VIEW_PIXEL,7,147,222,24,SS_CENTERIMAGE,WS_EX_STATICEDGE
+    CTEXT           "",IDC_STATIC_ORGIMG_PIXEL,241,147,222,24,SS_CENTERIMAGE,WS_EX_STATICEDGE
+    CTEXT           "",IDC_STATIC_MAGNIFY,7,118,222,24,SS_CENTERIMAGE,WS_EX_STATICEDGE
+    CTEXT           "",IDC_STATIC_TM,241,118,222,24,SS_CENTERIMAGE,WS_EX_STATICEDGE
+    CTEXT           "",IDC_STATIC_CAMPOS,226,44,222,12,SS_CENTERIMAGE,WS_EX_STATICEDGE
+    CTEXT           "",IDC_STATIC_TARGETINFO,435,223,198,12,SS_CENTERIMAGE,WS_EX_STATICEDGE
+    CTEXT           "",IDC_STATIC_CAMINFO,226,32,222,12,SS_CENTERIMAGE,WS_EX_STATICEDGE
+    CTEXT           "",IDC_STATIC_CAMPOS_MGRS,226,56,222,12,SS_CENTERIMAGE,WS_EX_STATICEDGE
+    GROUPBOX        "Static",IDC_STATIC_1,7,20,209,54
+    GROUPBOX        "Static",IDC_STATIC_2,220,20,234,54
+    GROUPBOX        "Static",IDC_STATIC_3,429,205,210,48
+    CTEXT           "",IDC_STATIC_TARGETINFO_MGRS,435,235,198,12,SS_CENTERIMAGE,WS_EX_STATICEDGE
+    CONTROL         "",IDC_CHECK_DOCKING_TOP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,104,8,8
+    CONTROL         "채널1",IDC_RADIO_CH1,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,20,7,35,10
+    CONTROL         "채널2",IDC_RADIO_CH2,"Button",BS_AUTORADIOBUTTON,55,7,35,10
+    CONTROL         "채널3",IDC_RADIO_CH3,"Button",BS_AUTORADIOBUTTON,90,7,35,10
+    CONTROL         "채널4",IDC_RADIO_CH4,"Button",BS_AUTORADIOBUTTON,125,7,35,10
+    CONTROL         "채널5",IDC_RADIO_CH5,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,160,7,35,10
+    CTEXT           "",IDC_STATIC_MOUSE_PANTILT,15,56,195,12,SS_CENTERIMAGE,WS_EX_STATICEDGE
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_DIALOG_STATUS_COORD, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 657
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 171
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_DIALOG_STATUS_COORD AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+#endif    // Korean resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Korean (Korea) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
+#pragma code_page(949)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DRAWINGSTYLE_CONFIG DIALOGEX 0, 0, 207, 115
+STYLE DS_SETFONT | DS_CENTER | WS_POPUP
+FONT 10, "맑은 고딕", 400, 0, 0x81
+BEGIN
+    CTEXT           "COLOR",IDC_SETUP_TEXT_COLOR,302,163,47,16,SS_CENTERIMAGE | WS_BORDER,WS_EX_STATICEDGE
+    PUSHBUTTON      "글자 색상",IDC_SETUP_TEXT_COLOR_SEL,355,163,85,16,BS_CENTER | BS_VCENTER
+    CTEXT           "COLOR",IDC_SETUP_TEXT_BACKCOLOR,384,91,47,16,SS_CENTERIMAGE | WS_BORDER,WS_EX_STATICEDGE
+    PUSHBUTTON      "글자 배경 색상",IDC_SETUP_TEXT_BACKCOLOR_SEL,402,112,85,16,BS_CENTER | BS_VCENTER
+    CTEXT           "COLOR",IDC_SETUP_CAMDIREC_COLOR,12,24,48,24,SS_CENTERIMAGE | WS_BORDER,WS_EX_STATICEDGE
+    PUSHBUTTON      "카메라 위치",IDC_SETUP_CAMDIREC_COLOR_SEL,66,24,48,24,BS_CENTER | BS_VCENTER
+    CTEXT           "COLOR",IDC_SETUP_REFPOINT_COLOR,22,185,48,24,SS_CENTERIMAGE | WS_BORDER,WS_EX_STATICEDGE
+    PUSHBUTTON      "참조점 위치",IDC_SETUP_REFPOINT_COLOR_SEL,76,185,48,12,BS_CENTER | BS_VCENTER
+    CTEXT           "COLOR",IDC_SETUP_TARGETPOINT_COLOR,12,54,47,24,SS_CENTERIMAGE | WS_BORDER,WS_EX_STATICEDGE
+    PUSHBUTTON      "표적 위치",IDC_SETUP_TARGETPOINT_COLOR_SEL,66,54,48,12,BS_CENTER | BS_VCENTER
+    COMBOBOX        IDC_COMBO_CAMDIREC_SYMBOL,120,24,66,70,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_REFPOINT_SYMBOL,130,185,66,33,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_TARGETPOINT_SYMBOL,120,54,66,54,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_EDIT_CAMDIREC_OPACITY,167,36,18,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_REFPOINT_LINEWIDTH,237,67,12,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_TARGETPOINT_LINEWIDTH,242,104,12,12,ES_AUTOHSCROLL
+    CTEXT           "스타일 설정",IDC_STATIC,0,0,174,18,SS_CENTERIMAGE | WS_BORDER
+    PUSHBUTTON      "X",IDC_BUTTON_HIDE,174,0,30,18
+    LTEXT           "Opa",IDC_STATIC,150,36,17,12,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_CAMDIREC_SYMBOLSIZE,136,36,12,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_REFPOINT_SYMBOLSIZE,146,198,12,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_TARGETPOINT_SYMBOLSIZE,136,67,12,12,ES_AUTOHSCROLL
+    LTEXT           "Size",IDC_STATIC,120,36,15,12,SS_CENTERIMAGE
+    CONTROL         "번호",IDC_CHECK_REFPOINT_NUM,"Button",BS_AUTOCHECKBOX | BS_CENTER | BS_VCENTER | WS_TABSTOP,78,199,30,8
+    LTEXT           "Pen",IDC_STATIC,213,66,15,12,SS_CENTERIMAGE
+    LTEXT           "Size",IDC_STATIC,130,198,15,12,SS_CENTERIMAGE
+    LTEXT           "Pen",IDC_STATIC,225,104,15,12,SS_CENTERIMAGE
+    LTEXT           "Size",IDC_STATIC,120,67,15,12,SS_CENTERIMAGE
+    CTEXT           "COLOR",IDC_SETUP_LINE_COLOR,12,84,48,24,SS_CENTERIMAGE | WS_BORDER,WS_EX_STATICEDGE
+    PUSHBUTTON      "경계선",IDC_SETUP_LINE_COLOR_SEL,66,84,48,24,BS_CENTER | BS_VCENTER
+    EDITTEXT        IDC_EDIT_LINE_LINEWIDTH,136,97,12,12,ES_AUTOHSCROLL
+    LTEXT           "Pen",IDC_STATIC,120,97,12,12,SS_CENTERIMAGE
+    COMBOBOX        IDC_COMBO_LINE_SYMBOL,120,84,66,44,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "적용",IDC_BUTTON_APPLY,330,105,66,18
+    EDITTEXT        IDC_EDIT_REFPOINT_OPACITY,177,197,18,12,ES_AUTOHSCROLL
+    LTEXT           "Opa",IDC_STATIC,160,197,17,12,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_LINE_OPACITY,167,97,18,12,ES_AUTOHSCROLL
+    LTEXT           "Opa",IDC_STATIC,150,97,17,12,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_TARGETPOINT_OPACITY,167,67,18,12,ES_AUTOHSCROLL
+    LTEXT           "Opa",IDC_STATIC,150,67,17,12,SS_CENTERIMAGE
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_DRAWINGSTYLE_CONFIG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 200
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 108
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_CURSOR_PEN          CURSOR                  "res\\aero_pen.cur"
+
+#endif    // Korean (Korea) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG 0, 0, 203, 199
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,88,48,20,20
+    CTEXT           "The Yovav (Horror) PictureShow Version 1.00 (Gamma)",IDC_STATIC,13,36,176,8,SS_NOPREFIX
+    CTEXT           "Copyfree (F) 2001",IDC_STATIC,64,163,70,8
+    DEFPUSHBUTTON   "Okay (Groovay)",IDOK,65,178,69,14,WS_GROUP
+    CTEXT           "CPicture Class Usage Demo\n\nEnjoy !!! - Feel Free To Send Me An\nImproved Or More Featured Source\n\nCPicture Class\nBy Dr.Yovav Gad\nwww.SuperMain.com\nSources@SuperMain.com",IDC_STATIC,34,78,134,75,SS_SUNKEN
+    ICON            IDI_BMP,IDC_STATIC,8,5,20,20
+    ICON            IDI_DIB,IDC_STATIC,35,5,20,20
+    ICON            IDI_EMF,IDC_STATIC,63,5,20,20
+    ICON            IDI_GIF,IDC_STATIC,90,5,20,20
+    ICON            IDI_ICO,IDC_STATIC,118,5,20,20
+    ICON            IDI_JPG,IDC_STATIC,146,5,20,20
+    ICON            IDI_WMF,IDC_STATIC,174,5,20,20
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 196
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 192
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\PictureShow.ico"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
+
+IDR_MAINFRAME_EDITED    BITMAP                  "res\\mainfram.bmp"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR 30, 30
+BEGIN
+    BUTTON      ID_FILE_OPEN
+    BUTTON      ID_FILE_SAVE_AS
+    SEPARATOR
+    BUTTON      ID_FILE_PRINT
+    SEPARATOR
+    BUTTON      ID_APP_ABOUT
+    SEPARATOR
+    BUTTON      ID_BUTTON_FULLSCREEN
+    SEPARATOR
+    BUTTON      ID_BUTTON_FITTOSCREEN
+    SEPARATOR
+    BUTTON      ID_BUTTON_DIMINISH
+    BUTTON      ID_BUTTON_MAGNIFY
+    SEPARATOR
+    BUTTON      ID_BUTTON_MAP1
+    BUTTON      ID_BUTTON_MAP2
+    BUTTON      ID_BUTTON_PREV
+    BUTTON      ID_BUTTON_NEXT
+END
+
+IDR_MAINFRAME_EDITED TOOLBAR 30, 30
+BEGIN
+    BUTTON      ID_BUTTON_MAP_OPEN
+    BUTTON      ID_BUTTON_DIMINISH
+    BUTTON      ID_BUTTON_MAGNIFY
+    SEPARATOR
+    BUTTON      ID_BUTTON_PEN
+    BUTTON      ID_BUTTON_STYLE_SETUP
+    BUTTON      ID_BUTTON_DRAWING_LOAD
+    BUTTON      ID_BUTTON_NEW_DRAWING
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU
+BEGIN
+    POPUP "&File", INACTIVE
+    BEGIN
+        MENUITEM "&Open\tCtrl+O",               ID_FILE_OPEN
+        MENUITEM "Save &As\tCtrl+S",            ID_FILE_SAVE_AS
+        MENUITEM SEPARATOR
+        MENUITEM "&Print\tCtrl+P",              ID_FILE_PRINT
+        MENUITEM "Print Pre&view",              ID_FILE_PRINT_PREVIEW
+        MENUITEM "P&rint Setup",                ID_FILE_PRINT_SETUP
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+    POPUP "&View", INACTIVE
+    BEGIN
+        MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+        MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "&Full screen view\tCtrl+F",   ID_OPTIONS_FULLSCREEN
+        MENUITEM SEPARATOR
+        MENUITEM "Next Picture\tPgDn",          ID_OPTIONS_NEXTPICTURE
+        MENUITEM "Previous picture\tPgUp",      ID_OPTIONS_PREVIOUSPICTURE
+    END
+    POPUP "&Options", INACTIVE
+    BEGIN
+        MENUITEM "&Associate file extentions\tCtrl+A", ID_OPTIONS_ASSOCIATEFILEEXTENTIONS
+        MENUITEM SEPARATOR
+        MENUITEM "Fit &borders to picture\tCtrl+B", ID_OPTIONS_FITBORDERSTOPICTURE
+        MENUITEM "&Fit picture to screen\t *",  ID_OPTIONS_FITTOSCREEN
+    END
+    POPUP "&Help", INACTIVE
+    BEGIN
+        MENUITEM "&About",                      ID_APP_ABOUT
+        MENUITEM "My &homepage",                ID_HELP_HOMEPAGE
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS
+BEGIN
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL, NOINVERT
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
+    "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL, NOINVERT
+    VK_F10,         ID_HIDDEN_MENU,         VIRTKEY, NOINVERT
+    "S",            ID_LINE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_LINE_UNDO,           VIRTKEY, CONTROL, NOINVERT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
+    "A",            ID_OPTIONS_ASSOCIATEFILEEXTENTIONS, VIRTKEY, CONTROL, NOINVERT
+    "B",            ID_OPTIONS_FITBORDERSTOPICTURE, VIRTKEY, CONTROL, NOINVERT
+    "F",            ID_OPTIONS_FULLSCREEN,  VIRTKEY, CONTROL, NOINVERT
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+    "R",            ID_RULER_SHOW,          VIRTKEY, CONTROL, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,0
+ PRODUCTVERSION 1,0,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x29L
+#else
+ FILEFLAGS 0x28L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "FileVersion", "1, 0, 0, 0"
+            VALUE "PrivateBuild", "1, 0, 0, 0"
+            VALUE "ProductVersion", "1, 0, 0, 0"
+            VALUE "SpecialBuild", "1, 0, 0, 0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDR_MAINFRAME           "HAWKEYE_GIS"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_APP_TITLE       "HAWKEYE_GIS"
+    AFX_IDS_IDLEMESSAGE     "Ready"
+END
+
+STRINGTABLE
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "OVR"
+    ID_INDICATOR_REC        "REC"
+    ID_INDICATOR_INFO       "Picture Information        "
+END
+
+STRINGTABLE
+BEGIN
+    ID_FILE_NEW             "Create a new document\nNew"
+    ID_FILE_OPEN            "Open an existing document\nOpen"
+    ID_FILE_CLOSE           "Close the active document\nClose"
+    ID_FILE_SAVE            "Save the active document\nSave"
+    ID_FILE_SAVE_AS         "Save the active document with a new name\nSave As"
+    ID_FILE_PAGE_SETUP      "Change the printing options\nPage Setup"
+    ID_FILE_PRINT_SETUP     "Change the printer and printing options\nPrint Setup"
+    ID_FILE_PRINT           "Print the active document\nPrint"
+    ID_FILE_PRINT_PREVIEW   "Display full pages\nPrint Preview"
+END
+
+STRINGTABLE
+BEGIN
+    ID_APP_ABOUT            "Display program information\nAbout"
+    ID_APP_EXIT             "Quit the application; prompts to save documents\nExit"
+END
+
+STRINGTABLE
+BEGIN
+    ID_FILE_MRU_FILE1       "Open this document"
+    ID_FILE_MRU_FILE2       "Open this document"
+    ID_FILE_MRU_FILE3       "Open this document"
+    ID_FILE_MRU_FILE4       "Open this document"
+    ID_FILE_MRU_FILE5       "Open this document"
+    ID_FILE_MRU_FILE6       "Open this document"
+    ID_FILE_MRU_FILE7       "Open this document"
+    ID_FILE_MRU_FILE8       "Open this document"
+    ID_FILE_MRU_FILE9       "Open this document"
+    ID_FILE_MRU_FILE10      "Open this document"
+    ID_FILE_MRU_FILE11      "Open this document"
+    ID_FILE_MRU_FILE12      "Open this document"
+    ID_FILE_MRU_FILE13      "Open this document"
+    ID_FILE_MRU_FILE14      "Open this document"
+    ID_FILE_MRU_FILE15      "Open this document"
+    ID_FILE_MRU_FILE16      "Open this document"
+END
+
+STRINGTABLE
+BEGIN
+    ID_NEXT_PANE            "Switch to the next window pane\nNext Pane"
+    ID_PREV_PANE            "Switch back to the previous window pane\nPrevious Pane"
+END
+
+STRINGTABLE
+BEGIN
+    ID_WINDOW_SPLIT         "Split the active window into panes\nSplit"
+END
+
+STRINGTABLE
+BEGIN
+    ID_EDIT_CLEAR           "Erase the selection\nErase"
+    ID_EDIT_CLEAR_ALL       "Erase everything\nErase All"
+    ID_EDIT_COPY            "Copy the selection and put it on the Clipboard\nCopy"
+    ID_EDIT_CUT             "Cut the selection and put it on the Clipboard\nCut"
+    ID_EDIT_FIND            "Find the specified text\nFind"
+    ID_EDIT_PASTE           "Insert Clipboard contents\nPaste"
+    ID_EDIT_REPEAT          "Repeat the last action\nRepeat"
+    ID_EDIT_REPLACE         "Replace specific text with different text\nReplace"
+    ID_EDIT_SELECT_ALL      "Select the entire document\nSelect All"
+    ID_EDIT_UNDO            "Undo the last action\nUndo"
+    ID_EDIT_REDO            "Redo the previously undone action\nRedo"
+END
+
+STRINGTABLE
+BEGIN
+    ID_VIEW_TOOLBAR         "Show or hide the toolbar\nToggle ToolBar"
+    ID_VIEW_STATUS_BAR      "Show or hide the status bar\nToggle StatusBar"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_SCSIZE          "Change the window size"
+    AFX_IDS_SCMOVE          "Change the window position"
+    AFX_IDS_SCMINIMIZE      "Reduce the window to an icon"
+    AFX_IDS_SCMAXIMIZE      "Enlarge the window to full size"
+    AFX_IDS_SCNEXTWINDOW    "Switch to the next document window"
+    AFX_IDS_SCPREVWINDOW    "Switch to the previous document window"
+    AFX_IDS_SCCLOSE         "Close the active window and prompts to save the documents"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_SCRESTORE       "Restore the window to normal size"
+    AFX_IDS_SCTASKLIST      "Activate Task List"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_PREVIEW_CLOSE   "Close print preview mode\nCancel Preview"
+END
+
+STRINGTABLE
+BEGIN
+    ID_OPTIONS_FITTOSCREEN  "Fit picture to current screen dimentions OR keep 1:1 aspect ratio"
+    ID_BUTTON_DIMINISH      "Diminish picture dimentionsn\nDiminish"
+    ID_BUTTON_MAGNIFY       "Magnify picture dimentionsn\nMagnify"
+    ID_OPTIONS_ASSOCIATEFILEEXTENTIONS 
+                            "Associate file extention with this application"
+    ID_BUTTON_FITTOSCREEN   "Fit picture to current screen dimentions\nFit picture to screen"
+END
+
+STRINGTABLE
+BEGIN
+    ID_BUTTON_PREV          "Load previous picture file\nPrevious picture"
+    ID_BUTTON_NEXT          "Load next picture file\nNext picture"
+    ID_OPTIONS_FULLSCREEN   "Full screen view\nFull screen"
+END
+
+STRINGTABLE
+BEGIN
+    ID_BUTTON_FULLSCREEN    "Full screen view\nFull screen"
+    ID_HELP_WEBPAGE         "Visit my home page\nHome page"
+    ID_OPTIONS_FITBORDERSTOPICTURE "Fit borders to picture\nFit borders"
+    ID_OPTIONS_NEXTPICTURE  "Load next picture file\nNext picture"
+    ID_OPTIONS_PREVIOUSPICTURE "Load previous picture file\nPrevious picture"
+END
+
+#endif    // English (United States) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Hebrew (Israel) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_HEB)
+LANGUAGE LANG_HEBREW, SUBLANG_DEFAULT
+#pragma code_page(1255)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ASSOCIATIONS DIALOG 0, 0, 130, 198
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Associations"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         " Choose all",IDC_CHECK_ALL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,20,38,55,8
+    CONTROL         ".BMP",IDC_CHECK_BMP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,20,49,33,8
+    CONTROL         ".DIB",IDC_CHECK_DIB,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,20,60,30,8
+    CONTROL         ".EMF",IDC_CHECK_EMF,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,20,71,33,8
+    CONTROL         ".GIF",IDC_CHECK_GIF,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,20,82,29,8
+    CONTROL         ".ICO (Not recommended)",IDC_CHECK_ICO,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,20,93,91,8
+    CONTROL         ".JPG",IDC_CHECK_JPG,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,20,104,33,8
+    CONTROL         ".WMF",IDC_CHECK_WMF,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,20,115,35,8
+    LTEXT           "Choose what file extentions to",IDC_STATIC,14,6,96,8
+    LTEXT           "associate with this application",IDC_STATIC,14,14,108,8
+    PUSHBUTTON      "Associate extentions",IDC_BUTTON_ASSOCIATE,12,143,105,14
+    PUSHBUTTON      "Cancel",IDCANCEL,12,175,106,14
+    GROUPBOX        "",IDC_STATIC,11,26,106,106
+    PUSHBUTTON      "Clear extentions",IDC_BUTTON_CLEAR,12,159,106,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_ASSOCIATIONS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 123
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 191
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_BMP                 ICON                    "res\\Extention_BMP.ico"
+
+IDI_DIB                 ICON                    "res\\Extention_DIB.ico"
+
+IDI_EMF                 ICON                    "res\\Extention_EMF.ico"
+
+IDI_GIF                 ICON                    "res\\Extention_GIF.ico"
+
+IDI_ICO                 ICON                    "res\\Extention_ICO.ico"
+
+IDI_JPG                 ICON                    "res\\Extention_JPG.ico"
+
+IDI_WMF                 ICON                    "res\\Extention_WMF.ico"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_FULLSCREEN          BITMAP                  "res\\toolbar1.bmp"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_FULLSCREEN TOOLBAR 30, 30
+BEGIN
+    BUTTON      ID_FILE_OPEN
+    BUTTON      ID_FILE_SAVE_AS
+    SEPARATOR
+    BUTTON      ID_FILE_PRINT
+    SEPARATOR
+    BUTTON      ID_APP_ABOUT
+    SEPARATOR
+    BUTTON      ID_BUTTON_FULLSCREEN_FLOAT
+    SEPARATOR
+    BUTTON      ID_BUTTON_FITTOSCREEN
+    SEPARATOR
+    BUTTON      ID_BUTTON_DIMINISH
+    BUTTON      ID_BUTTON_MAGNIFY
+    SEPARATOR
+    BUTTON      ID_BUTTON_MAP1
+    BUTTON      ID_BUTTON_MAP2
+    BUTTON      ID_BUTTON_NEXT
+    SEPARATOR
+    BUTTON      ID_BUTTON_PREV
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\PictureShow.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#include ""afxprint.rc""       // printing/print preview resources\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// JPG
+//
+
+IDR_DEFAULT             JPG                     "res\\Default.jpg"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    ID_BUTTON_FULLSCREEN    "Full screen view\nFull screen"
+    ID_BUTTON_FULLSCREEN_FLOAT "Normal screen view\nNormal screen"
+END
+
+STRINGTABLE
+BEGIN
+    ID_BUTTON_PREV          "Load previous picture file\nPrevious picture"
+    ID_BUTTON_NEXT          "Load next picture file\nNext picture"
+END
+
+STRINGTABLE
+BEGIN
+    ID_FILE_OPEN            "Open an existing document\nOpen"
+    ID_FILE_SAVE_AS         "Save the active document with a new name\nSave As"
+    ID_FILE_PRINT           "Print the active document\nPrint"
+END
+
+STRINGTABLE
+BEGIN
+    ID_APP_ABOUT            "Display program information\nAbout"
+END
+
+STRINGTABLE
+BEGIN
+    ID_BUTTON_DIMINISH      "Diminish picture dimentionsn\nDiminish"
+    ID_BUTTON_MAGNIFY       "Magnify picture dimentionsn\nMagnify"
+    ID_BUTTON_FITTOSCREEN   "Fit picture to current screen dimentions\nFit picture to screen"
+END
+
+#endif    // Hebrew (Israel) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\PictureShow.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#include "afxprint.rc"       // printing/print preview resources
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

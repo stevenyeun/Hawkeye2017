@@ -1,0 +1,235 @@
+﻿<Window x:Class="Hawkeye_Recording.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hawkeye_Recording"
+        mc:Ignorable="d"
+        Closing="Window_Closing"  
+        Title="녹 화" Height="1188.5" Width="525"
+        ResizeMode="NoResize" Background="Black"
+        WindowStyle="None">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.05*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.4*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- 축소상태일때보여줄버튼 -->
+        <Button x:Name="MaximizeButton" Visibility="Hidden" Content="녹 화" Grid.Column="0" Grid.Row="0" Grid.RowSpan="6" VerticalContentAlignment="Center"  HorizontalContentAlignment="Center" Style="{StaticResource InformButton}" Click="MaximizeButton_Click"/>
+
+        <GroupBox x:Name="Ch1Group" Grid.Row="1"  Header="채널 1">
+            <Grid Margin="10,10,10,0"  >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+
+                    <RowDefinition Height="0.3*"/>
+
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="0.3*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="65"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="110"/>
+                </Grid.ColumnDefinitions>
+
+                <!--주간영상-->
+                <TextBlock x:Name="Ch1Cam1TextBlock" Grid.Row="0" Grid.Column="0"  Text="주간영상" VerticalAlignment="Center" />
+                <TextBox x:Name="Ch1Cam1URITextBox" IsEnabled="False"  Grid.Row="0" Grid.Column="1" Text="URI" VerticalContentAlignment="Center"  HorizontalContentAlignment="Center" Grid.ColumnSpan="2"/>
+
+                <TextBlock FontSize="11" x:Name="Ch1Cam1Status" Grid.Row="1" Grid.Column="1" Text="..."  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right"  >
+                    <Button FontSize="11" x:Name = "Ch1Cam1Start" Content="시작"   Padding="0" Width="50" Click="Ch1Cam1Start_Click" Style="{StaticResource InformButton}"/>
+                    <Button FontSize="11" x:Name = "Ch1Cam1Finish" IsEnabled="False" Content="종료" Padding="0" Width="50" Click="Ch1Cam1Finish_Click" Style="{StaticResource InformButton}" />
+                </StackPanel>
+
+                <!--열영상-->
+                <TextBlock x:Name="Ch1Cam2TextBlock" Grid.Row="3" Grid.Column="0"  Text="열영상" VerticalAlignment="Center"  />
+                <TextBox x:Name="Ch1Cam2URITextBox" IsEnabled="False"  Grid.Row="3" Grid.Column="1" Text="URI" VerticalContentAlignment="Center"  HorizontalContentAlignment="Center" Grid.ColumnSpan="2"/>
+
+                <TextBlock FontSize="11" x:Name="Ch1Cam2Status" Grid.Row="4" Grid.Column="1" Text="..."  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <StackPanel Grid.Row="4" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right"  >
+                    <Button FontSize="11" x:Name = "Ch1Cam2Start" Content="시작"   Padding="0" Width="50" Click="Ch1Cam2Start_Click" Style="{StaticResource InformButton}"/>
+                    <Button FontSize="11" x:Name = "Ch1Cam2Finish" IsEnabled="False" Content="종료" Padding="0" Width="50" Click="Ch1Cam2Finish_Click" Style="{StaticResource InformButton}" />
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox x:Name="Ch2Group" Grid.Row="2"  Header="채널 2">
+            <Grid Margin="10,10,10,0"  >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+
+                    <RowDefinition Height="0.3*"/>
+
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="0.3*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="65"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="110"/>
+                </Grid.ColumnDefinitions>
+
+                <!--주간영상-->
+                <TextBlock x:Name="Ch2Cam1TextBlock" Grid.Row="0" Grid.Column="0"  Text="주간영상" VerticalAlignment="Center" />
+                <TextBox x:Name="Ch2Cam1URITextBox" IsEnabled="False"  Grid.Row="0" Grid.Column="1" Text="URI" VerticalContentAlignment="Center"  HorizontalContentAlignment="Center" Grid.ColumnSpan="2"/>
+
+                <TextBlock FontSize="11" x:Name="Ch2Cam1Status" Grid.Row="1" Grid.Column="1" Text="..."  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right"  >
+                    <Button FontSize="11" x:Name = "Ch2Cam1Start" Content="시작"   Padding="0" Width="50" Click="Ch2Cam1Start_Click" Style="{StaticResource InformButton}"/>
+                    <Button FontSize="11" x:Name = "Ch2Cam1Finish" IsEnabled="False" Content="종료" Padding="0" Width="50" Click="Ch2Cam1Finish_Click" Style="{StaticResource InformButton}" />
+                </StackPanel>
+
+                <!--열영상-->
+                <TextBlock x:Name="Ch2Cam2TextBlock" Grid.Row="3" Grid.Column="0"  Text="열영상" VerticalAlignment="Center"  />
+                <TextBox x:Name="Ch2Cam2URITextBox" IsEnabled="False"  Grid.Row="3" Grid.Column="1" Text="URI" VerticalContentAlignment="Center"  HorizontalContentAlignment="Center" Grid.ColumnSpan="2"/>
+
+                <TextBlock FontSize="11" x:Name="Ch2Cam2Status" Grid.Row="4" Grid.Column="1" Text="..."  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <StackPanel Grid.Row="4" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right"  >
+                    <Button FontSize="11" x:Name = "Ch2Cam2Start" Content="시작"   Padding="0" Width="50" Click="Ch2Cam2Start_Click" Style="{StaticResource InformButton}"/>
+                    <Button FontSize="11" x:Name = "Ch2Cam2Finish" IsEnabled="False" Content="종료" Padding="0" Width="50" Click="Ch2Cam2Finish_Click" Style="{StaticResource InformButton}" />
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox x:Name="Ch3Group" Grid.Row="3"  Header="채널 3">
+            <Grid Margin="10,10,10,0"  >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+
+                    <RowDefinition Height="0.3*"/>
+
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="0.3*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="65"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="110"/>
+                </Grid.ColumnDefinitions>
+
+                <!--주간영상-->
+                <TextBlock x:Name="Ch3Cam1TextBlock" Grid.Row="0" Grid.Column="0"  Text="주간영상" VerticalAlignment="Center" />
+                <TextBox x:Name="Ch3Cam1URITextBox" IsEnabled="False"  Grid.Row="0" Grid.Column="1" Text="URI" VerticalContentAlignment="Center"  HorizontalContentAlignment="Center" Grid.ColumnSpan="2"/>
+
+                <TextBlock FontSize="11" x:Name="Ch3Cam1Status" Grid.Row="1" Grid.Column="1" Text="..."  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right"  >
+                    <Button FontSize="11" x:Name = "Ch3Cam1Start" Content="시작"   Padding="0" Width="50" Click="Ch3Cam1Start_Click" Style="{StaticResource InformButton}"/>
+                    <Button FontSize="11" x:Name = "Ch3Cam1Finish" IsEnabled="False" Content="종료" Padding="0" Width="50" Click="Ch3Cam1Finish_Click" Style="{StaticResource InformButton}" />
+                </StackPanel>
+
+                <!--열영상-->
+                <TextBlock x:Name="Ch3Cam2TextBlock" Grid.Row="3" Grid.Column="0"  Text="열영상" VerticalAlignment="Center"  />
+                <TextBox x:Name="Ch3Cam2URITextBox" IsEnabled="False"  Grid.Row="3" Grid.Column="1" Text="URI" VerticalContentAlignment="Center"  HorizontalContentAlignment="Center" Grid.ColumnSpan="2"/>
+
+                <TextBlock FontSize="11" x:Name="Ch3Cam2Status" Grid.Row="4" Grid.Column="1" Text="..."  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <StackPanel Grid.Row="4" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right"  >
+                    <Button FontSize="11" x:Name = "Ch3Cam2Start" Content="시작"   Padding="0" Width="50" Click="Ch3Cam2Start_Click" Style="{StaticResource InformButton}"/>
+                    <Button FontSize="11" x:Name = "Ch3Cam2Finish" IsEnabled="False" Content="종료" Padding="0" Width="50" Click="Ch3Cam2Finish_Click" Style="{StaticResource InformButton}" />
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox x:Name="Ch4Group" Grid.Row="4"  Header="채널 4">
+            <Grid Margin="10,10,10,0"  >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+
+                    <RowDefinition Height="0.3*"/>
+
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="0.3*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="65"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="110"/>
+                </Grid.ColumnDefinitions>
+
+                <!--주간영상-->
+                <TextBlock x:Name="Ch4Cam1TextBlock" Grid.Row="0" Grid.Column="0"  Text="주간영상" VerticalAlignment="Center" />
+                <TextBox x:Name="Ch4Cam1URITextBox" IsEnabled="False"  Grid.Row="0" Grid.Column="1" Text="URI" VerticalContentAlignment="Center"  HorizontalContentAlignment="Center" Grid.ColumnSpan="2"/>
+
+                <TextBlock FontSize="11" x:Name="Ch4Cam1Status" Grid.Row="1" Grid.Column="1" Text="..."  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right"  >
+                    <Button FontSize="11" x:Name = "Ch4Cam1Start" Content="시작"   Padding="0" Width="50" Click="Ch4Cam1Start_Click" Style="{StaticResource InformButton}"/>
+                    <Button FontSize="11" x:Name = "Ch4Cam1Finish" IsEnabled="False" Content="종료" Padding="0" Width="50" Click="Ch4Cam1Finish_Click" Style="{StaticResource InformButton}" />
+                </StackPanel>
+
+                <!--열영상-->
+                <TextBlock x:Name="Ch4Cam2TextBlock" Grid.Row="3" Grid.Column="0"  Text="열영상" VerticalAlignment="Center"  />
+                <TextBox x:Name="Ch4Cam2URITextBox" IsEnabled="False"  Grid.Row="3" Grid.Column="1" Text="URI" VerticalContentAlignment="Center"  HorizontalContentAlignment="Center" Grid.ColumnSpan="2"/>
+
+                <TextBlock FontSize="11" x:Name="Ch4Cam2Status" Grid.Row="4" Grid.Column="1" Text="..."  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <StackPanel Grid.Row="4" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right"  >
+                    <Button FontSize="11" x:Name = "Ch4Cam2Start" Content="시작"   Padding="0" Width="50" Click="Ch4Cam2Start_Click" Style="{StaticResource InformButton}"/>
+                    <Button FontSize="11" x:Name = "Ch4Cam2Finish" IsEnabled="False" Content="종료" Padding="0" Width="50" Click="Ch4Cam2Finish_Click" Style="{StaticResource InformButton}" />
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox x:Name="Ch5Group" Grid.Row="5"  Header="채널 5">
+            <Grid Margin="10,10,10,0"  >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+
+                    <RowDefinition Height="0.3*"/>
+
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="0.3*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="65"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="110"/>
+                </Grid.ColumnDefinitions>
+
+                <!--주간영상-->
+                <TextBlock x:Name="Ch5Cam1TextBlock" Grid.Row="0" Grid.Column="0"  Text="주간영상" VerticalAlignment="Center" />
+                <TextBox x:Name="Ch5Cam1URITextBox" IsEnabled="False"  Grid.Row="0" Grid.Column="1" Text="URI" VerticalContentAlignment="Center"  HorizontalContentAlignment="Center" Grid.ColumnSpan="2"/>
+
+                <TextBlock FontSize="11" x:Name="Ch5Cam1Status" Grid.Row="1" Grid.Column="1" Text="..."  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right"  >
+                    <Button FontSize="11" x:Name = "Ch5Cam1Start" Content="시작"   Padding="0" Width="50" Click="Ch5Cam1Start_Click" Style="{StaticResource InformButton}"/>
+                    <Button FontSize="11" x:Name = "Ch5Cam1Finish" IsEnabled="False" Content="종료" Padding="0" Width="50" Click="Ch5Cam1Finish_Click" Style="{StaticResource InformButton}" />
+                </StackPanel>
+
+                <!--열영상-->
+                <TextBlock x:Name="Ch5Cam2TextBlock" Grid.Row="3" Grid.Column="0"  Text="열영상" VerticalAlignment="Center"  />
+                <TextBox x:Name="Ch5Cam2URITextBox" IsEnabled="False"  Grid.Row="3" Grid.Column="1" Text="URI" VerticalContentAlignment="Center"  HorizontalContentAlignment="Center" Grid.ColumnSpan="2"/>
+
+                <TextBlock FontSize="11" x:Name="Ch5Cam2Status" Grid.Row="4" Grid.Column="1" Text="..."  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <StackPanel Grid.Row="4" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right"  >
+                    <Button FontSize="11" x:Name = "Ch5Cam2Start" Content="시작"   Padding="0" Width="50" Click="Ch5Cam2Start_Click" Style="{StaticResource InformButton}"/>
+                    <Button FontSize="11" x:Name = "Ch5Cam2Finish" IsEnabled="False" Content="종료" Padding="0" Width="50" Click="Ch5Cam2Finish_Click" Style="{StaticResource InformButton}" />
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+
+        <StackPanel Grid.Row="6"   Orientation="Horizontal" HorizontalAlignment="Right"  Margin="0,0,20,20">
+            <Button x:Name = "enable" Content="수정"   Padding="0" Width="50" Height="40" Click="enable_Click" Style="{StaticResource InformButton}"/>
+            <Button x:Name = "save" IsEnabled="False" Content="저장"   Padding="0" Width="50" Height="40" Click="save_Click" Style="{StaticResource InformButton}" />
+        </StackPanel>
+    </Grid>
+</Window>

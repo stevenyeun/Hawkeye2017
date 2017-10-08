@@ -1,0 +1,437 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Korean (Korea) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
+#pragma code_page(949)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 18, 1\r\n"
+    "#pragma code_page(949)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\basic.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.kor\\afxres.rc""          // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\basic.ico"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG 0, 0, 235, 55
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "basic 정보"
+FONT 9, "굴림"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "basic 버전 1.0",IDC_STATIC,40,10,119,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2007",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "확인",IDOK,178,7,50,14,WS_GROUP
+END
+
+IDD_BASIC_DIALOG DIALOGEX 0, 0, 323, 409
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "basic"
+FONT 9, "굴림", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "확인",IDOK,31,388,50,14
+    GROUPBOX        "Connect",IDC_STATIC,7,7,115,75
+    LTEXT           "Auto-reconnect",IDC_STATIC,12,19,51,8
+    CONTROL         "On",IDC_RADIO_AUTO_RECONNECT_ON,"Button",BS_AUTORADIOBUTTON | WS_GROUP,68,18,21,12
+    CONTROL         "Off",IDC_RADIO_AUTO_RECONNECT_OFF,"Button",BS_AUTORADIOBUTTON,92,18,21,12
+    PUSHBUTTON      "Connect",IDC_BUTTON_CONNECT,14,37,49,13
+    PUSHBUTTON      "Play",IDC_BUTTON_PLAY,66,37,48,13,WS_DISABLED
+    PUSHBUTTON      "Snapshot",IDC_BUTTON_SNAPSHOT,181,53,35,13,WS_DISABLED
+    PUSHBUTTON      "Start Talking",IDC_BUTTON_TALKING,14,56,50,13,WS_DISABLED
+    GROUPBOX        "OnDataStream",IDC_STATIC,7,87,216,77
+    CONTROL         "On",IDC_RADIO_ON_DATASTREAM_ON,"Button",BS_AUTORADIOBUTTON | WS_GROUP,12,100,29,12
+    CONTROL         "Off",IDC_RADIO_ON_DATASTREAM_OFF,"Button",BS_AUTORADIOBUTTON,41,100,25,12
+    LTEXT           "Stream Type",IDC_STATIC,74,102,43,8
+    COMBOBOX        IDC_COMBO_DATASTREAM_TYPE,121,99,48,56,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Start",IDC_BUTTON_SWRITE,175,97,41,14
+    LTEXT           "File name",IDC_STATIC,13,140,33,8
+    EDITTEXT        IDC_EDIT_DATASTREAM_FILENAME,48,138,98,13,ES_AUTOHSCROLL | WS_DISABLED
+    PUSHBUTTON      "...",IDC_BUTTON_DATASTREAM_FILENAME,151,137,14,14
+    CONTROL         "Write",IDC_CHECK_FILEW,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,176,117,34,10
+    PUSHBUTTON      "GetFrame",IDC_BTN_GETFRAME,175,136,41,14
+    GROUPBOX        "DO 1",IDC_STATIC,7,167,108,26
+    CONTROL         "On",IDC_RADIO_ALARM1_ON,"Button",BS_AUTORADIOBUTTON | WS_GROUP,11,179,26,10
+    CONTROL         "Off",IDC_RADIO_ALARM1_OFF,"Button",BS_AUTORADIOBUTTON,37,179,25,10
+    PUSHBUTTON      "Send",IDC_BUTTON_ALARM1_SEND,67,176,38,13,WS_DISABLED
+    GROUPBOX        "DO 2",IDC_STATIC,116,167,107,26
+    CONTROL         "On",IDC_RADIO_ALARM2_ON,"Button",BS_AUTORADIOBUTTON | WS_GROUP,124,180,24,10
+    CONTROL         "Off",IDC_RADIO_ALARM2_OFF,"Button",BS_AUTORADIOBUTTON,150,180,25,10
+    PUSHBUTTON      "Send",IDC_BUTTON_ALARM2_SEND,180,176,38,13,WS_DISABLED
+    GROUPBOX        "PTZ",IDC_STATIC,7,199,216,91
+    PUSHBUTTON      "U",IDC_BUTTON_PTZ_UP,24,211,12,13,WS_DISABLED
+    PUSHBUTTON      "L",IDC_BUTTON_PTZ_LEFT,11,225,12,13,WS_DISABLED
+    PUSHBUTTON      "R",IDC_BUTTON_PTZ_RIGHT,36,226,12,13,WS_DISABLED
+    PUSHBUTTON      "D",IDC_BUTTON_PTZ_DOWN,23,240,12,13,WS_DISABLED
+    PUSHBUTTON      "Z I",IDC_BUTTON_PTZ_ZOOMIN,52,219,18,13,WS_DISABLED
+    PUSHBUTTON      "Z O",IDC_BUTTON_PTZ_ZOOMOUT,72,219,18,13,WS_DISABLED
+    PUSHBUTTON      "F N",IDC_BUTTON_PTZ_FOCUSNEAR,52,234,18,13,WS_DISABLED
+    PUSHBUTTON      "F F",IDC_BUTTON_PTZ_FOCUSFAR,72,234,18,13,WS_DISABLED
+    LTEXT           "Preset",IDC_STATIC,94,210,22,8
+    PUSHBUTTON      "Go to",IDC_BUTTON_PRESET_GOTO,122,207,29,13,WS_DISABLED
+    PUSHBUTTON      "Refresh List",IDC_BUTTON_REFRESH,158,207,55,13
+    CONTROL         "List1",IDC_LIST_PRESET,"SysListView32",LVS_REPORT | LVS_SINGLESEL | WS_DISABLED | WS_BORDER | WS_TABSTOP,95,225,121,56
+    GROUPBOX        "Decode (from File name)",IDC_STATIC,7,292,216,40
+    PUSHBUTTON      "Start",IDC_BTN_DEC_START,13,303,50,11
+    CONTROL         "Display",IDC_CH_DISP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,70,303,41,10
+    CONTROL         "Callback",IDC_CH_CB,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,112,303,44,10
+    CONTROL         "Connection Pnt",IDC_CH_CP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,157,303,61,10
+    LTEXT           "Output format:",IDC_STATIC,15,320,47,8
+    COMBOBOX        IDC_COMBO_OUTFORMAT,69,317,62,57,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Start PTZ on Screen",IDC_BUTTON_SCREEN_PTZ,11,258,79,13,WS_DISABLED
+    GROUPBOX        "Snapshot",IDC_STATIC,125,7,98,75
+    CONTROL         "Slider1",IDC_SLIDER1,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,126,23,95,15
+    LTEXT           "Compression",IDC_STATIC,133,15,44,8
+    EDITTEXT        IDC_EDIT_RESOL_X,129,62,21,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_RESOL_Y,160,62,17,12,ES_AUTOHSCROLL
+    CONTROL         "As buffer",IDC_RADIO_ASBUFFER,"Button",BS_AUTORADIOBUTTON,130,41,45,10
+    CONTROL         "As file",IDC_RADIO_ASFILE,"Button",BS_AUTORADIOBUTTON,182,41,36,10
+    LTEXT           "x",IDC_STATIC,152,63,8,8
+    LTEXT           "Resolution",IDC_STATIC,130,53,36,8
+    PUSHBUTTON      "Get Position",IDC_BUTTON_GET_POSITION,11,273,53,14,WS_DISABLED
+    CONTROL         "Max speed",IDC_CH_MAX_SPEED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,157,316,52,10
+    COMBOBOX        IDC_COMBO_DEINTER,228,139,79,53,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Start",IDC_BUTTON_AUTOSNAP,181,68,35,11,WS_DISABLED
+    GROUPBOX        "A/V sync",IDC_STATIC,225,7,91,80
+    CONTROL         "Enable",IDC_CHECK_AVENABLE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,232,29,38,10
+    EDITTEXT        IDC_EDIT_AVR,230,43,33,14,ES_AUTOHSCROLL
+    LTEXT           "Resync cond.",IDC_STATIC,267,42,49,8
+    LTEXT           "(0, 1000) ms",IDC_STATIC,268,51,41,8
+    EDITTEXT        IDC_EDIT_AVA,230,65,33,14,ES_AUTOHSCROLL
+    LTEXT           "Audio buffer",IDC_STATIC,267,63,49,8
+    LTEXT           "(0, 3000) ms",IDC_STATIC,268,73,41,8
+    PUSHBUTTON      "Apply",IDC_BUTTON_AV_APPLY,270,19,43,19
+    CONTROL         "Slider2",IDC_SLIDER_LATENCY,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,238,100,64,9
+    GROUPBOX        "Video buffer (frames)",IDC_STATIC,224,87,92,37
+    LTEXT           "Frames",IDC_STATIC_FR,258,110,38,8
+    LTEXT           "0",IDC_STATIC,232,101,8,8
+    LTEXT           "30",IDC_STATIC,302,101,9,8
+    GROUPBOX        "Server Config",IDC_STATIC,225,167,91,164
+    GROUPBOX        "Resolution",IDC_STATIC,230,183,82,71
+    GROUPBOX        "Bitrate",IDC_STATIC,230,256,82,69
+    GROUPBOX        "Deintelacing",IDC_STATIC,224,125,91,40
+    COMBOBOX        IDC_COMBO_RESOLUTION,236,201,68,123,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Get",IDC_SERVER_GET,236,228,33,15
+    PUSHBUTTON      "Set",IDC_SERVER_SET,272,227,31,16
+    EDITTEXT        IDC_EDIT_BITRATE,239,271,44,19,ES_AUTOHSCROLL
+    LTEXT           "Kbps",IDC_STATIC,289,277,24,12
+    PUSHBUTTON      "Get",IDC_SERVER_GET2,238,300,33,15
+    PUSHBUTTON      "Set",IDC_SERVER_SET2,274,299,31,16
+    PUSHBUTTON      "Play Wave",IDC_BUTTON_PLAYWAVE,66,56,48,13,WS_DISABLED
+    CONTROL         "",1082,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,7,333,309,50
+END
+
+IDD_DIALOG_CONNECT DIALOG 0, 0, 238, 179
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Connect"
+FONT 10, "System"
+BEGIN
+    CONTROL         "IPAddress1",IDC_IPADDRESS_IP,"SysIPAddress32",WS_TABSTOP,54,13,80,11
+    EDITTEXT        IDC_EDIT_PORT,54,25,80,12,ES_AUTOHSCROLL
+    COMBOBOX        IDC_COMBO_PROTOCOL,55,38,80,54,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_EDIT_LOGIN_NAME,54,51,80,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_PASSWORD,54,64,80,12,ES_PASSWORD | ES_AUTOHSCROLL
+    CONTROL         "Use audio",IDC_CH_AUDIO,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,139,14,91,10
+    CONTROL         "High Definition",IDC_CH_HD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,139,26,91,10
+    GROUPBOX        "",IDC_STATIC,3,86,233,68
+    CONTROL         "Connect through Streamer Server ",IDC_CHECK_USE_SS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,86,126,10
+    CONTROL         "IPAddress2",IDC_IPADDRESS_SS,"SysIPAddress32",WS_TABSTOP,54,99,80,11
+    EDITTEXT        IDC_EDIT_SS_PORT,54,111,80,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_SS_LOGIN,54,124,80,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_SS_PASS,54,137,80,12,ES_PASSWORD | ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,65,161,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,122,161,50,14
+    RTEXT           "IP",IDC_STATIC,11,13,41,10
+    RTEXT           "Port",IDC_STATIC,36,26,14,8
+    RTEXT           "Login Name",IDC_STATIC,11,53,40,8
+    RTEXT           "Password",IDC_STATIC,18,65,33,8
+    LTEXT           "Protocol",IDC_STATIC,23,40,28,8
+    GROUPBOX        "Server",IDC_STATIC,3,3,233,78
+    LTEXT           "IP",IDC_STATIC,43,100,8,8
+    LTEXT           "Port",IDC_STATIC,37,112,14,8
+    LTEXT           "Login",IDC_STATIC,32,126,19,8
+    LTEXT           "Password",IDC_STATIC,18,139,33,8
+    COMBOBOX        IDC_COMBO_CHANNEL,180,38,48,54,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Channel",IDC_STATIC,139,38,28,12,SS_CENTERIMAGE
+    COMBOBOX        IDC_COMBO_STREAM,180,51,48,54,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Stream",IDC_STATIC,139,51,28,12,SS_CENTERIMAGE
+END
+
+IDD_DIALOG_VIDEO DIALOGEX 0, 0, 299, 211
+STYLE DS_SETFONT | WS_POPUP | WS_CAPTION | WS_THICKFRAME
+CAPTION "Video"
+FONT 10, "System", 0, 0, 0x0
+BEGIN
+    CONTROL         "",IDC_TVSLIVECONTROL1,
+                    "{575A6BF1-1460-4907-9157-BECB7DCAC655}",WS_TABSTOP,0,0,299,211
+END
+
+IDD_DIALOG_DECODE DIALOG 0, 0, 238, 180
+STYLE DS_SETFONT | WS_POPUP | WS_CAPTION | WS_THICKFRAME
+CAPTION "Decode"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_TVSDECODECONTROL1,
+                    "{CA1B836A-156F-40BD-A2F5-F7AABEFAD692}",WS_TABSTOP,13,12,218,161
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041204B0"
+        BEGIN
+            VALUE "FileDescription", "basic MFC 응용 프로그램"
+            VALUE "FileVersion", "1, 0, 0, 1"
+            VALUE "InternalName", "basic"
+            VALUE "LegalCopyright", "Copyright (C) 2007"
+            VALUE "OriginalFilename", "basic.EXE"
+            VALUE "ProductName", "basic 응용 프로그램"
+            VALUE "ProductVersion", "1, 0, 0, 1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x412, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_BASIC_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 316
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 402
+    END
+
+    IDD_DIALOG_CONNECT, DIALOG
+    BEGIN
+    END
+
+    IDD_DIALOG_VIDEO, DIALOG
+    BEGIN
+    END
+
+    IDD_DIALOG_DECODE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 231
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 173
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_DIALOG_DECODE DLGINIT
+BEGIN
+    IDC_TVSDECODECONTROL1, 0x376, 16, 0
+0x0000, 0x0000, 0x0300, 0x0000, 0x21cc, 0x0000, 0x1b14, 0x0000, 
+    0
+END
+
+IDD_DIALOG_VIDEO DLGINIT
+BEGIN
+    IDC_TVSLIVECONTROL1, 0x376, 16, 0
+0x0000, 0x0000, 0x0900, 0x0000, 0x338a, 0x0000, 0x2461, 0x0000, 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_BASIC_DIALOG AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_DIALOG_VIDEO AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDS_ABOUTBOX            "basic 정보(&A)..."
+END
+
+#endif    // Korean (Korea) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DIALOG_PREVIEW DIALOG 0, 0, 366, 222
+STYLE DS_SETFONT | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "Preview"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,309,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,309,24,50,14
+    CONTROL         "",IDC_ST_IMAGE,"Static",SS_BITMAP | SS_NOTIFY | SS_CENTERIMAGE | SS_REALSIZEIMAGE | WS_BORDER,7,7,295,208
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_DIALOG_PREVIEW, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 359
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 215
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (United States) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+#ifdef _WIN32
+LANGUAGE 18, 1
+#pragma code_page(949)
+#endif //_WIN32
+#include "res\basic.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.kor\afxres.rc"          // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

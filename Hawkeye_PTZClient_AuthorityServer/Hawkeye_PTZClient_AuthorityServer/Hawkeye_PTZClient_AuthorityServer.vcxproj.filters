@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="CommonSource">
+      <UniqueIdentifier>{19337443-c204-4416-b1b2-deadaba9f297}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MultiSensorControl">
+      <UniqueIdentifier>{5c436ce6-36d9-4d19-9ee4-5c751acf6917}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Hawkeye_PTZClient_AuthorityServer.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\CommonSource\AuthorityPacket.h">
+      <Filter>CommonSource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\CommonSource\CommonDefine.h">
+      <Filter>CommonSource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\CommonSource\CommonMFCFunc.h">
+      <Filter>CommonSource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\CommonSource\ErrorDefine.h">
+      <Filter>CommonSource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\CommonSource\PresetPacket.h">
+      <Filter>CommonSource</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiSensorControl\crc16.h">
+      <Filter>MultiSensorControl</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiSensorControl\MultiSensorCommDef.h">
+      <Filter>MultiSensorControl</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiSensorControl\ProtoFlirTau2.h">
+      <Filter>MultiSensorControl</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiSensorControl\StandardCommandToProtocol.h">
+      <Filter>MultiSensorControl</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiSensorControl\U2SRProtoDef.h">
+      <Filter>MultiSensorControl</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiSensorControl\U2SRProtoParser.h">
+      <Filter>MultiSensorControl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\CommonSource\IniIPSetup.h">
+      <Filter>CommonSource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\CommonSource\MyFunc.h">
+      <Filter>CommonSource</Filter>
+    </ClInclude>
+    <ClInclude Include="ByteCollector.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Hawkeye_PTZClient_AuthorityServer.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\CommonSource\AuthorityPacket.cpp">
+      <Filter>CommonSource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\CommonSource\CommonMFCFunc.cpp">
+      <Filter>CommonSource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\CommonSource\ErrorDefine.cpp">
+      <Filter>CommonSource</Filter>
+    </ClCompile>
+    <ClCompile Include="MultiSensorControl\crc16.cpp">
+      <Filter>MultiSensorControl</Filter>
+    </ClCompile>
+    <ClCompile Include="MultiSensorControl\ProtoFlirTau2.cpp">
+      <Filter>MultiSensorControl</Filter>
+    </ClCompile>
+    <ClCompile Include="MultiSensorControl\StandardCommandToProtocol.cpp">
+      <Filter>MultiSensorControl</Filter>
+    </ClCompile>
+    <ClCompile Include="MultiSensorControl\U2SRProtoParser.cpp">
+      <Filter>MultiSensorControl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\CommonSource\IniIPSetup.cpp">
+      <Filter>CommonSource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\CommonSource\MyFunc.cpp">
+      <Filter>CommonSource</Filter>
+    </ClCompile>
+    <ClCompile Include="TCPClient.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="TCPServer.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ByteCollector.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Hawkeye_PTZClient_AuthorityServer.rc">
+      <Filter>리소스 파일</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

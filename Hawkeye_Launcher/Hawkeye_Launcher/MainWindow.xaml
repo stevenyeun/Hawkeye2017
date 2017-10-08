@@ -1,0 +1,72 @@
+﻿<Window x:Class="Hawkeye_Launcher.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hawkeye_Launcher"
+        mc:Ignorable="d"
+        Title="MainWindow"  Background="Black" ResizeMode="NoResize" WindowStyle="None"
+        AllowsTransparency="False"
+        
+         >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150*"/>
+            <RowDefinition Height="540*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="513*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Button x:Name="minBtn" Content="프로그램 종료" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3"  Grid.ColumnSpan="3" Click="minBtn_Click" Style="{StaticResource InformButton}" />
+
+        <!-- 이미지와, 상태창, 버튼들-->
+        <Border x:Name="imgBorder" Width="513" Height="670" Grid.Row="1" Grid.Column="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="319"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="BITBtn" Content="BIT" Width="80" HorizontalAlignment="Right" Grid.Row="0" Grid.Column="1" Click="BITBtn_Click"  Style="{StaticResource InformButton}"   />
+                
+                <Border Width="513" Height="319" Grid.Row="1" Grid.ColumnSpan="2" >
+
+                    <Grid Background="#FF0E0E0E">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image x:Name="img" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Row="0" Grid.Column="0"  Loaded="Image_Loaded" />
+
+                    </Grid>
+
+                </Border>
+                <!--VerticalScrollBarVisibility="Visible"-->
+                
+                <TextBox x:Name="logTextBox" Grid.Row="2" Grid.ColumnSpan="2" TextWrapping="Wrap" AcceptsReturn="True"  />
+                <Button x:Name="StartBtn" Grid.Row="3" Grid.Column="0" Content="프로그램 시작" Click="StartBtn_Click"  Style="{StaticResource InformButton}" />
+                <Button x:Name="ExitBtn" Grid.Row="3" Grid.Column="1" Content="프로그램 종료"  Click="ExitBtn_Click" Style="{StaticResource InformButton}" />
+
+
+
+            </Grid>
+
+        </Border>
+    </Grid>
+</Window>

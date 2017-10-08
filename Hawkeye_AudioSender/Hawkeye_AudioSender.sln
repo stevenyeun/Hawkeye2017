@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "basic", "Hawkeye_AudioSender\basic.vcxproj", "{D2FBBD21-7E3C-4A47-A2CF-BB81671BD138}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug_Unicode|x86 = Debug_Unicode|x86
+		Debug|x86 = Debug|x86
+		Release_Unicode|x86 = Release_Unicode|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D2FBBD21-7E3C-4A47-A2CF-BB81671BD138}.Debug_Unicode|x86.ActiveCfg = Debug_Unicode|Win32
+		{D2FBBD21-7E3C-4A47-A2CF-BB81671BD138}.Debug_Unicode|x86.Build.0 = Debug_Unicode|Win32
+		{D2FBBD21-7E3C-4A47-A2CF-BB81671BD138}.Debug|x86.ActiveCfg = Debug|Win32
+		{D2FBBD21-7E3C-4A47-A2CF-BB81671BD138}.Debug|x86.Build.0 = Debug|Win32
+		{D2FBBD21-7E3C-4A47-A2CF-BB81671BD138}.Release_Unicode|x86.ActiveCfg = Release_Unicode|Win32
+		{D2FBBD21-7E3C-4A47-A2CF-BB81671BD138}.Release_Unicode|x86.Build.0 = Release_Unicode|Win32
+		{D2FBBD21-7E3C-4A47-A2CF-BB81671BD138}.Release|x86.ActiveCfg = Release|Win32
+		{D2FBBD21-7E3C-4A47-A2CF-BB81671BD138}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

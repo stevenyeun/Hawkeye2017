@@ -1,0 +1,108 @@
+﻿<Window x:Class="Hawkeye_Panorama.PanoramaSetup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hawkeye_Panorama"
+        mc:Ignorable="d"
+        Closing="Window_Closing"
+        Title="파노라마 설정" Height="317.5" Width="297" ResizeMode="NoResize" Background="Black">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.2*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="1.6*"/>
+            <RowDefinition Height="1.2*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+
+        </Grid.ColumnDefinitions>
+
+        <!--채널 상태-->
+        <Border x:Name="ChannelStatusBorder" Grid.Row="0" Style="{StaticResource BorderStyle}" Margin="10,10,10,0" >
+            <Label x:Name="ChannelStatusLabel" Content="..." />
+        </Border>
+
+        <!--촬영 정보-->
+        <GroupBox x:Name="PanoramaInfo" Grid.Row="1" Header="촬영 정보" >
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4.2*"/>
+                    <ColumnDefinition Width="1.3*"/>
+                    <ColumnDefinition Width="2.5*"/>
+                    <ColumnDefinition Width="1.5*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Content="가로 화각" />
+                <Label Grid.Row="0" Grid.Column="1" Content="360°"/>
+                <Label Grid.Row="0" Grid.Column="2" Content="세로 화각" />
+                <TextBox x:Name="PanoImageFovHeightTextBox" Grid.Row="0" Grid.Column="3" Text="11.5"/>
+
+                <Label Grid.Row="1" Grid.Column="0" Content="프레임 가로 화각" />
+                <Label Grid.Row="1" Grid.Column="1" Content="24°"/>
+                <Label Grid.Row="1" Grid.Column="2" Content="줌값" />
+                <TextBox x:Name="ZoomAbsTextBox" Grid.Row="1" Grid.Column="3" Text="00000"/>
+
+                <Label Grid.Row="2" Grid.Column="0" Content="촬영각(방위각)" />
+                <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Content="12 36 60 84 108 132 156 180 &#xa;204 228 252 276 300 324 348" FontSize="8"/>
+                <Label Grid.Row="3" Grid.Column="0" Content="촬영각(고저각)" />
+                <TextBox x:Name="PanoImageTiltDegTextBox" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Text="+00.0000" />
+
+                <CheckBox x:Name="AutoInputTiltDegChkBox" IsChecked="False" Grid.Row="3" Grid.Column="3">
+                    <CheckBox.ToolTip>
+                        <ToolTip>
+                            <DockPanel >
+                                <!-- <Image Source="data\flower.jpg"/> -->
+                                <TextBlock> 체크박스를 선택하면 고저각이 자동으로 입력됩니다.</TextBlock>
+                            </DockPanel>
+                        </ToolTip>
+                    </CheckBox.ToolTip>
+                </CheckBox>
+                <Button x:Name="SaveBtn" Click="SaveBtn_Click" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4" Content="저 장" Style="{StaticResource InformButton}" />
+
+            </Grid >
+        </GroupBox>
+
+        <!--버튼-->
+        <Border x:Name="PanoramaControlBorder" Grid.Row="2" Style="{StaticResource BorderStyle}" >
+            <Grid >
+                <Grid.RowDefinitions>
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="5*"/>
+
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="PanoramaCaptureStart" Click="PanoramaCaptureStart_Click" Grid.Column="0" Content="촬영 시작" Style="{StaticResource InformButton}" />
+                <Button x:Name="PanoramaCaptureStop"  Click="PanoramaCaptureStop_Click" Grid.Column="1" Content="촬영 중지" Style="{StaticResource InformButton}"/>
+            </Grid>
+        </Border>
+
+        <Border x:Name="PanoramaStatusBorder" Grid.Row="3" Style="{StaticResource BorderStyle}" >
+            <Grid >
+                <Grid.RowDefinitions>
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+
+                </Grid.ColumnDefinitions>
+
+                <Label x:Name="PanoramaStatusLabel" Content="..." Grid.Column="0" />
+
+            </Grid>
+        </Border>
+
+    </Grid>
+
+
+</Window>
